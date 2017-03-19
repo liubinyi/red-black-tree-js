@@ -7,12 +7,12 @@ const nodeColor = {
 
 /**
  * Node of the red black tree
- * @constructor
- * @param {Number} key
- * @param {Object} value
- * @param {Node} left
- * @param {Node} right
- * @param {Number} color
+ * constructor
+ * param key : Number
+ * param value : Object
+ * param left : Node
+ * param right : Node
+ * param color : Number
  */
 class Node {
   constructor(key, value, left, right, color) {
@@ -24,14 +24,14 @@ class Node {
   }
 
   /**
-  * @return {Boolean}
+  * return Boolean
   */
   isRedNode() {
     return this.color === nodeColor.RED
   }
 
   /**
-  * @return {Boolean}
+  * return Boolean
   */
   isBlackNode() {
     return this.color === nodeColor.BLACK
@@ -39,12 +39,12 @@ class Node {
 }
 
 /**
+ * constructor
  * Node of the red black tree
  * 1.Every node is either red or black
  * 2.Root and leaves are all black
  * 3.Every red node has black parent
  * 4.All simple paths from a node x to a descendant leaves of x has same black nodes
- * @constructor
  */
 class RbTree {
   constructor() {
@@ -54,9 +54,8 @@ class RbTree {
 /**
   * Complexity: O(1).
   *
-  * @method
-  * @param {Node} node Node.
-  * @return {Node} a copy of original node
+  * param Node node Node.
+  * return Node a copy of original node
   */
   clone(node) {
     return new Node(node.key, node.value, node.left, node.right, node.color);
@@ -69,9 +68,9 @@ class RbTree {
   *    A   C   ===>   D   B
   *   /\                 /\
   *  D E                E  C
-  * @method
-  * @param {Node} node Node.
-  * @return {Node}
+  * method
+  * param Node node Node.
+  * return Node
   */
   rotateRight(node) {
 
@@ -84,26 +83,25 @@ class RbTree {
   *    A   C   <====  D  B
   *   /\                 /\
   *  D E                E  C
-  * @method
-  * @param {Node} node Node.
-  * @return {Node}
+  * method
+  * param Node node Node.
+  * return Node
   */
   rotateLeft(node) {
 
   }
 
 /**
-  * @method
-  * @param {Node} node Node.
-  * @return {Node}
+  * param Node node Node.
+  * return Node
   */
   insert(node) {
 
   }
 /**
-  * @method
-  * @param {Node} node Node.
-  * @return {Node}
+  * method
+  * param Node node Node.
+  * return Node
   */
   remove(node) {
 
