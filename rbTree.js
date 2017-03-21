@@ -15,12 +15,13 @@ const nodeColor = {
  * param color : Number
  */
 class Node {
-  constructor(key, value, left, right, color) {
+  constructor(key, value, left, right, color, parent) {
     this.key = key;
     this.value = value;
     this.left = left;
     this.right = right;
     this.color = color;
+    this.parent = parent;
   }
 
   /**
@@ -35,6 +36,32 @@ class Node {
   */
   isBlackNode() {
     return this.color === nodeColor.BLACK
+  }
+
+  /**
+  * get GrandParent of a given node
+  */
+  getGrandParent(node) {
+    if ((node != null) && (node.parent != null)) {
+      return node.parent.parent;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+  * get uncle of a given node
+  */
+  getUncle(node) {
+    let grandParent = getGrandParent(node);
+    if (grandParent == null) {
+      return null;
+    }
+    if (node.parent == node.left) {
+      return grandParent.right;
+    } else {
+      return grandParent.left;
+    }
   }
 }
 
@@ -63,32 +90,61 @@ class RbTree {
 
 /**
   * Complexity: O(1).
-  *      B              A
-  *     / \            / \
-  *    A   C   ===>   D   B
-  *   /\                 /\
-  *  D E                E  C
+  * Complexity: O(1).
+  *       y                   x
+  *      / \                 / \
+  *     x  Gamma   ====>   alpha y
+  *   /  \                      / \
+  * alpha beta               beta Gamma
   * method
   * param Node node Node.
   * return Node
   */
   rotateRight(node) {
-
+    let y = node.right;
+    node.left = y.right;
+    if (y.right != null) {
+      y.right.parent = node;
+    }
+    y.parent = node.parent;
+    if (node.parent == null) {
+      this.root = y;
+    } elseif (node == node.parent.right) {
+      node.parent.right = y
+    } else {
+      node.parent.left = y
+    }
+    y.right = node;
+    node.parent = y;
   }
 
 /**
   * Complexity: O(1).
-  *      B              A
-  *     / \            / \
-  *    A   C   <====  D  B
-  *   /\                 /\
-  *  D E                E  C
+  *       y                   x
+  *      / \                 / \
+  *     x  Gamma   <====   alpha y
+  *   /  \                      / \
+  * alpha beta               beta Gamma
   * method
   * param Node node Node.
   * return Node
   */
   rotateLeft(node) {
-
+    let y = node.left;
+    node.right = y.left;
+    if (y.left != null) {
+      y.left.parent = node;
+    }
+    y.parent = node.parent;
+    if (node.parent == null) {
+      this.root = y;
+    } elseif (node == node.parent.left) {
+      node.parent.left = y
+    } else {
+      node.parent.right = y
+    }
+    y.left = node;
+    node.parent = y;
   }
 
 /**
