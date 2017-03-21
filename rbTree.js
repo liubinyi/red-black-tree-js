@@ -90,7 +90,6 @@ class RbTree {
 
 /**
   * Complexity: O(1).
-  * Complexity: O(1).
   *       y                   x
   *      / \                 / \
   *     x  Gamma   ====>   alpha y
