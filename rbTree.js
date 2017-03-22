@@ -89,6 +89,23 @@ class RbTree {
   }
 
 /**
+ * find value by node key
+ */
+  find(key) {
+    let node = root;
+    while (node != null) {
+      if (key < node.key) {
+        node = node.left;
+      } else if (key > node.key) {
+        node = node.right;
+      } else {
+        return node.value
+      }
+    }
+    return null
+  }
+
+/**
   * Complexity: O(1).
   *       y                   x
   *      / \                 / \
@@ -100,21 +117,28 @@ class RbTree {
   * return Node
   */
   rotateRight(node) {
-    let y = node.right;
-    node.left = y.right;
-    if (y.right != null) {
-      y.right.parent = node;
-    }
-    y.parent = node.parent;
-    if (node.parent == null) {
-      this.root = y;
-    } elseif (node == node.parent.right) {
-      node.parent.right = y
+    if (node.parent != null) {
+      if (node == node.parent.left) {
+        node.parent.left = node.left;
+      } else {
+        node.parent.right = node.left;
+      }
+      node.left.parent = node.parent;
+      node.parent = node.left;
+      if (node.left.right != null) {
+        node.left.right.parent = node;
+      }
+      node.left = node.left.right;
+      node.parent.right = node;
     } else {
-      node.parent.left = y
+      let left = this.root.left;
+      this.root.left = this.root.left.right;
+      left.right.parent = this.root;
+      this.root.parent = left;
+      left.right = this.root;
+      left.parent = nil;
+      this.root = left;
     }
-    y.right = node;
-    node.parent = y;
   }
 
 /**
@@ -129,21 +153,28 @@ class RbTree {
   * return Node
   */
   rotateLeft(node) {
-    let y = node.left;
-    node.right = y.left;
-    if (y.left != null) {
-      y.left.parent = node;
-    }
-    y.parent = node.parent;
-    if (node.parent == null) {
-      this.root = y;
-    } elseif (node == node.parent.left) {
-      node.parent.left = y
+    if (node.parent != null) {
+      if (node == node.parent.left) {
+        node.parent.left = node.right;
+      } else {
+        node.parent.right = node.right;
+      }
+      node.right.parent = node.parent;
+      node.parent = node.right;
+      if (node.right.left != null) {
+        node.right.left.parent = node;
+      }
+      node.right = node.right.left;
+      node.parent.left = node;
     } else {
-      node.parent.right = y
+      let right = this.root.left;
+      this.root.right = this.root.right.left;
+      right.left.parent = this.root;
+      this.root.parent = right;
+      right.left = this.root;
+      right.parent = nil;
+      this.root = right;
     }
-    y.left = node;
-    node.parent = y;
   }
 
 /**
