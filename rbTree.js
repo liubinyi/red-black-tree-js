@@ -27,15 +27,8 @@ class Node {
   /**
   * return Boolean
   */
-  isRedNode() {
+  isRed() {
     return this.color === nodeColor.RED
-  }
-
-  /**
-  * return Boolean
-  */
-  isBlackNode() {
-    return this.color === nodeColor.BLACK
   }
 
   /**
