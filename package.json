@@ -4,17 +4,29 @@
   "description": "A javascript implementation of red-black-tree",
   "main": "rbTree.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "WEBPACK_ENV=build webpack",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liubinyi/red-black-tree-js.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Binyi Liu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/liubinyi/red-black-tree-js/issues"
   },
-  "homepage": "https://github.com/liubinyi/red-black-tree-js#readme"
+  "homepage": "https://github.com/liubinyi/red-black-tree-js#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-es2015": "^6.24.0",
+    "jest": "^19.0.2",
+    "webpack": "^2.3.0"
+  }
 }

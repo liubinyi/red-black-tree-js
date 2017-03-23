@@ -187,3 +187,4 @@ class RbTree {
   }
 
 }
+export default RbTree;
