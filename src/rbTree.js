@@ -30,32 +30,6 @@ class Node {
   isRed() {
     return this.color === nodeColor.RED
   }
-
-  /**
-  * get GrandParent of a given node
-  */
-  getGrandParent(node) {
-    if ((node != null) && (node.parent != null)) {
-      return node.parent.parent;
-    } else {
-      return null;
-    }
-  }
-
-  /**
-  * get uncle of a given node
-  */
-  getUncle(node) {
-    let grandParent = getGrandParent(node);
-    if (grandParent == null) {
-      return null;
-    }
-    if (node.parent == node.left) {
-      return grandParent.right;
-    } else {
-      return grandParent.left;
-    }
-  }
 }
 
 /**
@@ -175,8 +149,99 @@ class RbTree {
   * return Node
   */
   insert(node) {
-
+    let temp = this.root;
+    if (this.root == null) {
+      this.root = node;
+      node.color = nodeColor.BLACK;
+      node.parent = null;
+    } else {
+      node.color = nodeColor.RED;
+      while (true) {
+        if (node.key < temp.key) {
+          if (temp.left == null) {
+              temp.left = node;
+              node.parent = temp;
+              break;
+          } else {
+              temp = temp.left;
+          }
+        } else if (node.key >= temp.key) {
+          if (temp.right == nil) {
+              temp.right = node;
+              node.parent = temp;
+              break;
+          } else {
+              temp = temp.right;
+          }
+        }
+      }
+      fixTree(node);
+    }
   }
+
+/**
+* A method to fix RB TREE
+*/
+  fixTree(node) {
+    while (node.parent.color == nodeColor.RED) {
+
+      let rotateRight = node.parent == node.parent.parent.left;
+
+      let uncle = getUncle(node);
+      if (uncle != null && uncle.color == nodeColor.RED) {
+        node.parent.color = BLACK;
+        uncle.color = BLACK;
+        node.parent.parent.color = RED;
+        node = node.parent.parent;
+        continue;
+      }
+      if (node == node.parent.right) {
+          node = node.parent;
+          rotateLeft(node);
+      }
+      if (node == node.parent.left) {
+          node = node.parent;
+          rotateRight(node);
+      }
+      node.parent.color = BLACK;
+      node.parent.parent.color = RED;
+
+      if (rotateRight) {
+        rotateRight(node.parent.parent);
+      } else {
+        rotateLeft(node.parent.parent);
+      }
+
+    }
+    this.root.color = nodeColor.BLACK;
+  }
+
+  /**
+  * get GrandParent of a given node
+  */
+  getGrandParent(node) {
+    if ((node != null) && (node.parent != null)) {
+      return node.parent.parent;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+  * get uncle of a given node
+  */
+  getUncle(node) {
+    let grandParent = getGrandParent(node);
+    if (grandParent == null) {
+      return null;
+    }
+    if (node.parent == node.left) {
+      return grandParent.right;
+    } else {
+      return grandParent.left;
+    }
+  }
+
 /**
   * method
   * param Node node Node.
