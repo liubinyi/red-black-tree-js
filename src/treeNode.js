@@ -11,13 +11,13 @@ import nodeColor from './color'
  */
 
 class Node {
-  constructor(key, value, left, right, color, parent) {
+  constructor(key, value) {
     this.key = key;
     this.value = value;
-    this.left = left;
-    this.right = right;
-    this.color = color;
-    this.parent = parent;
+    this.left = null;
+    this.right = null;
+    this.color = null;
+    this.parent = null;
   }
 
   /**

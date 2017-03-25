@@ -22,7 +22,7 @@ class RbTree {
   * return Node a copy of original node
   */
   clone(node) {
-    return new Node(node.key, node.value, node.left, node.right, node.color);
+    return new Node(node.key, node.value, node.left, node.right, node.color, node.parent);
   }
 
 /**
@@ -135,7 +135,8 @@ class RbTree {
   * param Node node Node.
   * return Node
   */
-  insert(node) {
+  insert(key, value) {
+    let node = new Node(key, value);
     let temp = this.root;
     if (this.root == null) {
       this.root = node;
