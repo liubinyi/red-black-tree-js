@@ -259,16 +259,8 @@ class RbTree {
 
   print() {
     let height = this.findHeight(this.root) + 1;
-    this.printHelper(this.root, "*", height);
+    this.printHelper(this.root, "___", height);
   }
-
-  // generateIndent(n, indent) {
-  //   let finalIndent = "";
-  //   for (var i = 0; i < n; i++) {
-  //     finalIndent += indent;
-  //   }
-  //   return finalIndent;
-  // }
 
   printHelper(node, indent, height) {
     let output = "";
@@ -279,21 +271,21 @@ class RbTree {
       return
     }
     if (node == this.root) {
-      output += node.key + "\n"
-      //console.log(node.key);
+      // output += node.key + "\n"
+      console.log(node.key);
     }
     if (node.left != null) {
-      output += node.left.key;
-      //console.log(indent + node.left.key);
+      // output += node.left.key;
+      console.log(indent + node.left.key + "(parent node " + node.left.parent.key + ")");
     }
     if (node.right != null) {
-      output += node.right.key
-      //console.log(indent + node.right.key);
+      // output += node.right.key
+      console.log(indent + node.right.key + "(parent node " + node.right.parent.key + ")");
     }
     treeHeight -= 1;
-    console.log(output);
-    this.printHelper(node.left, indent, treeHeight);
-    this.printHelper(node.right, indent, treeHeight);
+    //console.log(output);
+    this.printHelper(node.left, indent+indent, treeHeight);
+    this.printHelper(node.right, indent+indent, treeHeight);
   }
 
 /**

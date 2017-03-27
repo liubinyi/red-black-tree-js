@@ -109,24 +109,3 @@ test('rbTree insert() five nodes', () => {
 
 
 });
-
-
-// test('rbTree insert() case 2', () => {
-//   expect(rbTree).toMatchObject({ root: null });
-// });
-//
-// test('rbTree insert() case 3', () => {
-//   expect(rbTree).toMatchObject({ root: null });
-// });
-//
-// test('rbTree insert() case 4', () => {
-//   expect(rbTree).toMatchObject({ root: null });
-// });
-//
-// test('rbTree insert() case 5', () => {
-//   expect(rbTree).toMatchObject({ root: null });
-// });
-//
-// test('rbTree insert() case 6', () => {
-//   expect(rbTree).toMatchObject({ root: null });
-// });
