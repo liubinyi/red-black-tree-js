@@ -71,26 +71,42 @@ test('rbTree insert() root', () => {
 
 test('rbTree insert() five nodes', () => {
 
-  //insert five nodes
-  rbTree.insert(1, "abc");
-  rbTree.insert(2, "foo");
-  rbTree.insert(3, "bar");
-  rbTree.insert(4, "test");
-  rbTree.insert(5, "foofoo");
+  for (var i = 1; i < 8; i++) {
+    rbTree.insert(i, i + " red");
+  }
 
   //check if keys are in the right place
   expect(rbTree.root.key).toBe(2);
   expect(rbTree.root.left.key).toBe(1);
+  expect(rbTree.root.left.left).toBe(null);
+  expect(rbTree.root.left.right).toBe(null);
   expect(rbTree.root.right.key).toBe(4);
   expect(rbTree.root.right.left.key).toBe(3);
-  expect(rbTree.root.right.right.key).toBe(5);
+  expect(rbTree.root.right.right.key).toBe(6);
+  expect(rbTree.root.right.right.left.key).toBe(5);
+  expect(rbTree.root.right.right.right.key).toBe(7);
 
   //check if values are in the right place
   expect(rbTree.root.color).toBe(nodeColor.BLACK);
   expect(rbTree.root.left.color).toBe(nodeColor.BLACK);
-  expect(rbTree.root.right.color).toBe(nodeColor.BLACK);
-  expect(rbTree.root.right.left.color).toBe(nodeColor.RED);
-  expect(rbTree.root.right.right.color).toBe(nodeColor.RED);
+  expect(rbTree.root.right.color).toBe(nodeColor.RED);
+  expect(rbTree.root.right.left.color).toBe(nodeColor.BLACK);
+  expect(rbTree.root.right.right.color).toBe(nodeColor.BLACK);
+  expect(rbTree.root.right.right.left.color).toBe(nodeColor.RED);
+  expect(rbTree.root.right.right.right.color).toBe(nodeColor.RED);
+
+  // console.log(prettyFormat(rbTree));
+  rbTree.print();
+  // console.log(rbTree.findHeight(rbTree.root));
+  // expect(rbTree.root.key).toBe(4);
+  // expect(rbTree.root.left.key).toBe(2);
+  // expect(rbTree.root.left.left.key).toBe(1);
+  // expect(rbTree.root.left.right.key).toBe(3);
+  // expect(rbTree.root.right.key).toBe(6);
+  // expect(rbTree.root.right.left.key).toBe(5);
+  // expect(rbTree.root.right.right.key).toBe(7);
+  // expect(rbTree.root.right.right.right.key).toBe(8);
+
 
 });
 
