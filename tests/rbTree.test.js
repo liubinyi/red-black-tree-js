@@ -2,7 +2,7 @@
 * this file contains tests for rbTree
 */
 import prettyFormat from 'pretty-format'
-import RbTree from "../src/RbTree";
+import RbTree from "../src/rbTree";
 import Node from '../src/treeNode'
 import nodeColor from '../src/color'
 
