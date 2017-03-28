@@ -34,7 +34,6 @@ var config = {
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
     extensions: ['.js']
   },
   plugins: plugins
