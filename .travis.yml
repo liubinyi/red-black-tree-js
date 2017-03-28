@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- "6"
+cacje:
+  - node_modules
+script:
+  - npm install
+  - npm run build
+after_success:
+  - npm run coveralls
