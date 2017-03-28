@@ -54,28 +54,45 @@ class RbTree {
   * return Node
   */
   rotateRight(node) {
-    if (node.parent != null) {
-      if (node == node.parent.left) {
-        node.parent.left = node.left;
-      } else {
-        node.parent.right = node.left;
-      }
-      node.left.parent = node.parent;
-      node.parent = node.left;
-      if (node.left.right != null) {
-        node.left.right.parent = node;
-      }
-      node.left = node.left.right;
-      node.parent.right = node;
-    } else {
-      let left = this.root.left;
-      this.root.left = this.root.left.right;
-      left.right.parent = this.root;
-      this.root.parent = left;
-      left.right = this.root;
-      left.parent = null;
-      this.root = left;
+    // if (node.parent != null) {
+    //   if (node == node.parent.left) {
+    //     node.parent.left = node.left;
+    //   } else {
+    //     node.parent.right = node.left;
+    //   }
+    //   node.left.parent = node.parent;
+    //   node.parent = node.left;
+    //   if (node.left.right != null) {
+    //     node.left.right.parent = node;
+    //   }
+    //   node.left = node.left.right;
+    //   node.parent.right = node;
+    // } else {
+    //   let left = this.root.left;
+    //   this.root.left = this.root.left.right;
+    //   left.right.parent = this.root;
+    //   this.root.parent = left;
+    //   left.right = this.root;
+    //   left.parent = null;
+    //   this.root = left;
+    // }
+    let y = node.left;
+    node.left = y.right;
+    if (y.right != null) {
+      y.right.parent = node;
     }
+    y.parent = node.parent;
+    if (node.parent == null) {
+      this.root = y;
+    } else {
+      if (node == node.parent.right) {
+        node.parent.right = y;
+      } else {
+        node.parent.left = y;
+      }
+    }
+    y.right = node;
+    node.parent = y;
   }
 
 /**
@@ -90,28 +107,6 @@ class RbTree {
   * return Node
   */
   rotateLeft(node) {
-    // if (node.parent != null) {
-    //   if (node == node.parent.left) {
-    //     node.parent.left = node.right;
-    //   } else {
-    //     node.parent.right = node.right;
-    //   }
-    //   node.right.parent = node.parent;
-    //   node.parent = node.right;
-    //   if (node.right.left != null) {
-    //     node.right.left.parent = node;
-    //   }
-    //   node.right = node.right.left;
-    //   node.parent.left = node;
-    // } else {
-    //   let right = this.root.right;
-    //   this.root.right = this.root.right.left;
-    //   right.left.parent = this.root;
-    //   this.root.parent = right;
-    //   right.left = this.root;
-    //   right.parent = nil;
-    //   this.root = right;
-    // }
     let y = node.right;
     node.right = y.left;
     if (y.left != null) {
@@ -175,33 +170,33 @@ class RbTree {
     while (node.parent != null && node.parent.color == nodeColor.RED) {
       let uncle = null;
       if (node.parent == node.parent.parent.left) {
-          uncle = node.parent.parent.right;
+        uncle = node.parent.parent.right;
 
-          if (uncle != null && uncle.color == nodeColor.RED) {
-              node.parent.color = nodeColor.BLACK;
-              uncle.color = nodeColor.BLACK;
-              node.parent.parent.color = nodeColor.RED;
-              node = node.parent.parent;
-              continue;
-          }
-          if (node == node.parent.right) {
-              //Double rotation needed
-              node = node.parent;
-              this.rotateLeft(node);
-          }
-          node.parent.color = nodeColor.BLACK;
-          node.parent.parent.color = nodeColor.RED;
-          //if the "else if" code hasn't executed, this
-          //is a case where we only need a single rotation
-          this.rotateRight(node.parent.parent);
+        if (uncle != null && uncle.color == nodeColor.RED) {
+            node.parent.color = nodeColor.BLACK;
+            uncle.color = nodeColor.BLACK;
+            node.parent.parent.color = nodeColor.RED;
+            node = node.parent.parent;
+            continue;
+        }
+        if (node == node.parent.right) {
+            //Double rotation needed
+            node = node.parent;
+            this.rotateLeft(node);
+        }
+        node.parent.color = nodeColor.BLACK;
+        node.parent.parent.color = nodeColor.RED;
+        //if the "else if" code hasn't executed, this
+        //is a case where we only need a single rotation
+        this.rotateRight(node.parent.parent);
       } else {
-          uncle = node.parent.parent.left;
-           if (uncle != null && uncle.color == nodeColor.RED) {
-              node.parent.color = nodeColor.BLACK;
-              uncle.color = nodeColor.BLACK;
-              node.parent.parent.color = nodeColor.RED;
-              node = node.parent.parent;
-              continue;
+        uncle = node.parent.parent.left;
+          if (uncle != null && uncle.color == nodeColor.RED) {
+            node.parent.color = nodeColor.BLACK;
+            uncle.color = nodeColor.BLACK;
+            node.parent.parent.color = nodeColor.RED;
+            node = node.parent.parent;
+            continue;
           }
           if (node == node.parent.left) {
               //Double rotation needed
@@ -213,35 +208,9 @@ class RbTree {
           //if the "else if" code hasn't executed, this
           //is a case where we only need a single rotation
           this.rotateLeft(node.parent.parent);
-      }
-  }
-  this.root.color = nodeColor.BLACK;
-}
-
-  /**
-  * get GrandParent of a given node
-  */
-  getGrandParent(node) {
-    if ((node != null) && (node.parent != null)) {
-      return node.parent.parent;
-    } else {
-      return null;
+        }
     }
-  }
-
-  /**
-  * get uncle of a given node
-  */
-  getUncle(node) {
-    let grandParent = this.getGrandParent(node);
-    if (grandParent == null) {
-      return null;
-    }
-    if (node.parent == node.left) {
-      return grandParent.right;
-    } else {
-      return grandParent.left;
-    }
+    this.root.color = nodeColor.BLACK;
   }
 
   findHeight(node) {
