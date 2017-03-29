@@ -54,28 +54,7 @@ class RbTree {
   * return Node
   */
   rotateRight(node) {
-    // if (node.parent != null) {
-    //   if (node == node.parent.left) {
-    //     node.parent.left = node.left;
-    //   } else {
-    //     node.parent.right = node.left;
-    //   }
-    //   node.left.parent = node.parent;
-    //   node.parent = node.left;
-    //   if (node.left.right != null) {
-    //     node.left.right.parent = node;
-    //   }
-    //   node.left = node.left.right;
-    //   node.parent.right = node;
-    // } else {
-    //   let left = this.root.left;
-    //   this.root.left = this.root.left.right;
-    //   left.right.parent = this.root;
-    //   this.root.parent = left;
-    //   left.right = this.root;
-    //   left.parent = null;
-    //   this.root = left;
-    // }
+
     let y = node.left;
     node.left = y.right;
     if (y.right != null) {
