@@ -107,7 +107,8 @@ class RbTree {
 
 /**
   * param Node node Node.
-  * return Node
+  * Make the color of newly inserted nodes as RED and then perform standard BST insertion
+  * If x is root, change color of node as BLACK (Black height +1).
   */
   insert(key, value) {
     let node = new Node(key, value);
@@ -127,7 +128,7 @@ class RbTree {
           } else {
               temp = temp.left;
           }
-        } else if (node.key >= temp.key) {
+        } else {
           if (temp.right == null) {
               temp.right = node;
               node.parent = temp;
@@ -143,6 +144,16 @@ class RbTree {
 
 /**
 * A method to fix RB TREE
+* when uncle is RED
+* Change color of parent and uncle as BLACK.
+* Color of grand parent as RED.
+* Change node = node’s grandparent, repeat steps 2 and 3 for new x.
+* ---------------------------------------------------------------
+* when uncle is BLACK
+* left_left_case
+* left_right_case
+* right_right_case
+* right_left_case
 */
 //nodeColor.RED
   fixTree(node) {

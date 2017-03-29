@@ -128,3 +128,30 @@ test('rbTree insert() right rotate', () => {
   expect(rbTree.root.right.right.left.right.key).toBe(10);
   rbTree.print();
 });
+
+
+//right left case
+test('rbTree insert()', () => {
+
+  rbTree.insert(10, "abc");
+  rbTree.insert(9, "foo");
+  rbTree.insert(27, "bar");
+  rbTree.insert(25, "bar");
+  rbTree.insert(28, "bar");
+  rbTree.insert(29, "bar");
+  rbTree.insert(24, "bar");
+  rbTree.insert(26, "bar");
+  rbTree.insert(23, "bar");
+
+  expect(rbTree.root.key).toBe(25);
+  expect(rbTree.root.left.key).toBe(10);
+  expect(rbTree.root.left.left.key).toBe(9);
+  expect(rbTree.root.left.right.key).toBe(24);
+  expect(rbTree.root.left.right.left.key).toBe(23);
+
+  expect(rbTree.root.right.key).toBe(27);
+  expect(rbTree.root.right.left.key).toBe(26);
+  expect(rbTree.root.right.right.key).toBe(28);
+  expect(rbTree.root.right.right.right.key).toBe(29);
+
+});
