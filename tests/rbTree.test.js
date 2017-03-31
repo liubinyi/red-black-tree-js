@@ -21,6 +21,13 @@ test('rbTree find() non existing key', () => {
   expect(rbTree.find(1)).toBe(null);
 });
 
+test('rbTree emptyTree() non existing key', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.emptyTree();
+  expect(rbTree.root).toBe(null);
+});
+
 test('rbTree find() existing key right side', () => {
   let node_1 = new Node(1, "abc");
   let node_2 = new Node(2, "foo");

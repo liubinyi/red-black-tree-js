@@ -247,6 +247,10 @@ class RbTree {
     this.printHelper(node.right, indent+indent, treeHeight);
   }
 
+  emptyTree() {
+    this.root = null;
+  }
+
 /**
   * method
   * param Node node Node.
