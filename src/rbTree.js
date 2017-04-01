@@ -203,6 +203,9 @@ class RbTree {
     this.root.color = nodeColor.BLACK;
   }
 
+  /**
+  * return the height of a tree
+  */
   findHeight(node) {
     if (node == null) {
       return -1;
@@ -216,6 +219,9 @@ class RbTree {
     return rightLen + 1;
   }
 
+  /**
+  * print out current tree
+  */
   print() {
     let height = this.findHeight(this.root) + 1;
     this.printHelper(this.root, "___", height);
@@ -247,8 +253,24 @@ class RbTree {
     this.printHelper(node.right, indent+indent, treeHeight);
   }
 
+  /**
+  * remove all nodes inside the tree
+  */
   emptyTree() {
     this.root = null;
+  }
+
+  /**
+  * return the min node of a given tree
+  */
+  min(node) {
+    if (node == null || node == undefined) {
+      return {};
+    }
+    while (node.left != null) {
+      node = node.left;
+    }
+    return node;
   }
 
 /**
@@ -256,7 +278,14 @@ class RbTree {
   * param Node node Node.
   * return Node
   */
-  remove(node) {
+  remove(key) {
+
+  }
+
+/**
+ * a method to fix remove key
+ */
+  removeFix(node) {
 
   }
 

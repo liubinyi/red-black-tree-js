@@ -47,9 +47,6 @@ test('rbTree find() existing key left side', () => {
 });
 
 test('rbTree find() existing key root', () => {
-  let node_1 = new Node(1, "abc");
-  let node_2 = new Node(2, "foo");
-  let node_3 = new Node(3, "bar");
   rbTree.insert(1, "abc");
   rbTree.insert(2, "foo");
   rbTree.insert(3, "bar");
@@ -59,6 +56,18 @@ test('rbTree find() existing key root', () => {
 test('rbTree clone()', () => {
   let node_1 = new Node(1, "abc")
   expect(rbTree.clone(node_1)).toMatchObject(node_1);
+});
+
+test('rbTree min() non-null case', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.insert(3, "bar");
+  expect(rbTree.min(rbTree.root).key).toBe(1);
+});
+
+test('rbTree min() null case', () => {
+  expect(rbTree.min(null)).toMatchObject({});
+  expect(rbTree.min()).toMatchObject({});
 });
 
 test('rbTree insert() root', () => {
