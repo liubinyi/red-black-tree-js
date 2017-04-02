@@ -142,7 +142,6 @@ test('rbTree insert() right rotate', () => {
   expect(rbTree.root.right.right.right.key).toBe(12);
   expect(rbTree.root.right.right.left.left.key).toBe(8);
   expect(rbTree.root.right.right.left.right.key).toBe(10);
-  rbTree.print();
 });
 
 
@@ -171,3 +170,133 @@ test('rbTree insert()', () => {
   expect(rbTree.root.right.right.right.key).toBe(29);
 
 });
+
+// test('rbTree delete() case 1', () => {
+//
+//   rbTree.insert(30, "abc");
+//   rbTree.insert(20, "foo");
+//   rbTree.insert(40, "bar");
+//   rbTree.insert(31, "bar");
+//   rbTree.insert(50, "bar");
+//   rbTree.insert(32, "bar");
+//
+//   rbTree.remove(40);
+//   rbTree.print();
+// });
+
+test('rbTree findNode() by key ', () => {
+
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(31, "bar");
+  rbTree.insert(50, "bar");
+  rbTree.insert(32, "bar");
+
+  expect(rbTree.findNode(40).key).toBe(40);
+  expect(rbTree.findNode(30).key).toBe(30);
+  expect(rbTree.findNode(20).key).toBe(20);
+  expect(rbTree.findNode(100)).toBe(null);
+  rbTree.print();
+});
+
+// test('rbTree delete() case', () => {
+//
+//   rbTree.insert(10, "abc");
+//   rbTree.insert(9, "foo");
+//   rbTree.insert(27, "bar");
+//   rbTree.insert(25, "bar");
+//   rbTree.insert(28, "bar");
+//   rbTree.insert(29, "bar");
+//   rbTree.insert(24, "bar");
+//   rbTree.insert(26, "bar");
+//   rbTree.insert(23, "bar");
+//
+//   rbTree.remove(25);
+//
+// });
+//
+// test('rbTree delete() simple case', () => {
+//
+//   rbTree.insert(30, "abc");
+//   rbTree.insert(20, "foo");
+//   rbTree.insert(40, "bar");
+//   rbTree.insert(10, "bar");
+//
+//   rbTree.remove(20);
+// });
+//
+// test('rbTree delete() both u ,v are black', () => {
+//
+//   rbTree.insert(30, "abc");
+//   rbTree.insert(20, "foo");
+//   rbTree.insert(40, "bar");
+//   rbTree.insert(50, "bar");
+//
+//   rbTree.remove(20);
+// });
+//
+// test('rbTree delete() current node u is double black and it is not root', () => {
+//
+//   rbTree.insert(30, "abc");
+//   rbTree.insert(20, "foo");
+//   rbTree.insert(40, "bar");
+//   rbTree.insert(35, "bar");
+//   rbTree.insert(50, "bar");
+//
+//   rbTree.remove(20);
+//   //rbTree.print();
+// });
+//
+// test('rbTree delete() current node u is double black and it is not root', () => {
+//
+//   rbTree.insert(6, "abc");
+//   rbTree.insert(4, "foo");
+//   rbTree.insert(8, "bar");
+//   rbTree.insert(2, "bar");
+//   rbTree.insert(5, "bar");
+//   rbTree.insert(7, "bar");
+//   rbTree.insert(9, "bar");
+//
+//   rbTree.remove(9);
+// });
+//
+// test('rbTree delete() current node u is double black and it is not root', () => {
+//
+//   rbTree.insert(6, "abc");
+//   rbTree.insert(4, "foo");
+//   rbTree.insert(7, "bar");
+//   rbTree.insert(2, "bar");
+//   rbTree.insert(5, "bar");
+//
+//   rbTree.remove(7);
+//   // rbTree.print();
+// });
+
+//
+// test('rbTree delete() more case', () => {
+//
+//   rbTree.insert(12, "abc");
+//   rbTree.insert(7, "foo");
+//   rbTree.insert(1, "bar");
+//   rbTree.insert(0, "bar");
+//   rbTree.insert(2, "bar");
+//   rbTree.insert(3, "bar");
+//   rbTree.insert(4, "bar");
+//   rbTree.insert(5, "bar");
+//   rbTree.insert(6, "bar");
+//   rbTree.insert(11, "bar");
+//   rbTree.insert(10, "bar");
+//   rbTree.insert(9, "bar");
+//   rbTree.insert(8, "bar");
+//
+//   rbTree.remove(12);
+//   rbTree.remove(7);
+//   rbTree.remove(1);
+//   rbTree.remove(0);
+//   rbTree.remove(2);
+//   rbTree.remove(3);
+//   rbTree.remove(8);
+//   rbTree.remove(11);
+//
+// });

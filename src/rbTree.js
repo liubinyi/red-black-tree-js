@@ -42,6 +42,20 @@ class RbTree {
     return null
   }
 
+  findNode(key) {
+    let node = this.root;
+    while (node != null) {
+      if (key < node.key) {
+        node = node.left;
+      } else if (key > node.key) {
+        node = node.right;
+      } else {
+        return node;
+      }
+    }
+    return null;
+  }
+
 /**
   * Complexity: O(1).
   *       y                   x
@@ -273,21 +287,122 @@ class RbTree {
     return node;
   }
 
+  // transplant(u, v) {
+  //   if (u.parent == null) {
+  //     this.root = v;
+  //   } else if(u == u.parent.left) {
+  //     u.parent.left = v;
+  //   } else {
+  //     u.parent.right = v;
+  //   }
+  //   v.parent = u.parent;
+  // }
+
 /**
   * method
   * param Node node Node.
   * return Node
   */
-  remove(key) {
-
-  }
+  // remove(key) {
+  //   let z = this.findNode(key);
+  //   if (z == null) {
+  //     return;
+  //   }
+  //   let x;
+  //   let y = z;
+  //   let y_original_color = y.color;
+  //   if (z.left == null) {
+  //     x = z.right;
+  //     this.transplant(z, z.right);
+  //   } else if (z.right == null) {
+  //     x = z.left;
+  //     this.transplant(z, z.left);
+  //   } else {
+  //     y = this.min(z.right);
+  //     y_original_color = y.color;
+  //     x = y.right;
+  //     if (y.parent == z) {
+  //       if (x == null) {
+  //         x = new Node(null, null);
+  //         x.color = nodeColor.BLACK;
+  //       }
+  //       x.parent = y;
+  //     } else {
+  //       this.transplant(y, y.right);
+  //       y.right = z.right;
+  //       if (y.right != null) {
+  //         y.right.parent = y;
+  //       }
+  //     }
+  //     this.transplant(z, y);
+  //     y.left = z.left;
+  //     y.left.parent = y;
+  //     y.color = z.color;
+  //   }
+  //   if (y_original_color == nodeColor.BLACK) {
+  //     this.removeFix(x);
+  //   }
+  //   return;
+  // }
 
 /**
  * a method to fix remove key
  */
-  removeFix(node) {
-
-  }
-
+  // removeFix(node) {
+  //   while(node != this.root && node.color == nodeColor.BLACK) {
+  //     if (node == node.parent.left) {
+  //       let w = node.parent.right;
+  //       if (w.color == nodeColor.RED) {
+  //         w.color = nodeColor.BLACK;
+  //         node.parent.color = nodeColor.RED;
+  //         rotateLeft(node.parent);
+  //         w = node.parent.right;
+  //       }
+  //       if (w.left.color == nodeColor.BLACK && w.right.color == nodeColor.BLACK) {
+  //         w.color = nodeColor.RED;
+  //         node = node.parent;
+  //         continue;
+  //       } else if (w.right.color == nodeColor.BLACK) {
+  //         w.left.color = nodeColor.BLACK;
+  //         w.color = nodeColor.RED;
+  //         w = node.parent.right;
+  //       }
+  //       if (w.right.color == nodeColor.RED) {
+  //         w.color = node.parent.color;
+  //         node.parent.color = nodeColor.BLACK;
+  //         w.right.color = nodeColor.BLACK;
+  //         rotateLeft(node.parent);
+  //         node = root;
+  //       }
+  //     } else {
+  //       let w = node.parent.left;
+  //
+  //       if (w.color = nodeColor.RED) {
+  //         w.color = nodeColor.BLACK;
+  //         node.parent.color = nodeColor.RED;
+  //         this.rotateRight(node.parent);
+  //         w = node.parent.left;
+  //       }
+  //       if (w.right.color == nodeColor.BLACK && w.left.color == nodeColor.BLACK) {
+  //         w.color = nodeColor.RED;
+  //         node = node.parent;
+  //         continue;
+  //       } else if (w.left.color == nodeColor.BLACK) {
+  //         w.right.color = nodeColor.BLACK;
+  //         w.color = nodeColor.RED;
+  //         this.rotateLeft(w);
+  //         w = node.parent.left;
+  //       }
+  //       if (w.left.color = nodeColor.RED) {
+  //         w.color = x.parent.color;
+  //         x.parent.color = nodeColor.BLACK;
+  //         w.left.color = nodeColor.BLACK;
+  //         this.rotateRight(node.parent);
+  //         node = root;
+  //       }
+  //     }
+  //   }
+  //   node.color = nodeColor.BLACK;
+  // }
 }
 export default RbTree;
