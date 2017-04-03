@@ -1,6 +1,8 @@
 'use strict';
-import Node from './treeNode'
-import nodeColor from './color'
+import Node from './treeNode';
+import nodeColor from './color';
+import createNode from './createNode';
+import createLeafNode from './createLeafNode';
 
 /**
  * constructor
@@ -42,6 +44,12 @@ class RbTree {
     return null
   }
 
+  isNilNode(node) {
+    return node == null || (node.key == null && node.value == null
+           && node.color == nodeColor.BLACK
+           && node.left == null && node.right == null);
+  }
+
   findNode(key) {
     let node = this.root;
     while (node != null) {
@@ -70,12 +78,18 @@ class RbTree {
   rotateRight(node) {
 
     let y = node.left;
-    node.left = y.right;
-    if (y.right != null) {
+
+    if (this.isNilNode(y.right)) {
+      node.left = createLeafNode(node);
+    } else {
+      node.left = y.right;
+    }
+
+    if (!this.isNilNode(y.right)) {
       y.right.parent = node;
     }
     y.parent = node.parent;
-    if (node.parent == null) {
+    if (this.isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node == node.parent.right) {
@@ -101,12 +115,19 @@ class RbTree {
   */
   rotateLeft(node) {
     let y = node.right;
-    node.right = y.left;
-    if (y.left != null) {
+
+    // console.log(y.left)
+    if (this.isNilNode(y.left)) {
+      node.right = createLeafNode(node);
+    } else {
+      node.right = y.left;
+    }
+
+    if (!this.isNilNode(y.left)) {
       y.left.parent = node;
     }
     y.parent = node.parent;
-    if (node.parent == null) {
+    if (this.isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node == node.parent.left) {
@@ -125,34 +146,63 @@ class RbTree {
   * If x is root, change color of node as BLACK (Black height +1).
   */
   insert(key, value) {
-    let node = new Node(key, value);
-    let temp = this.root;
+    // let node = createNode(key, value);
+    // let temp = this.root;
+    // if (this.root == null) {
+    //   this.root = node;
+    //   node.color = nodeColor.BLACK;
+    //   node.parent = null;
+    // } else {
+    //   node.color = nodeColor.RED;
+    //   while (true) {
+    //     if (node.key < temp.key) {
+    //       if (this.isNilNode(temp.left)) {
+    //           temp.left = node;
+    //           node.parent = temp;
+    //           break;
+    //       } else {
+    //           temp = temp.left;
+    //       }
+    //     } else {
+    //       if (this.isNilNode(temp.right)) {
+    //           temp.right = node;
+    //           node.parent = temp;
+    //           break;
+    //       } else {
+    //           temp = temp.right;
+    //       }
+    //     }
+    //   }
+    //   this.fixTree(node);
+    // }
+    let y = null;
+    let x = this.root;
+    let z = createNode(key, value);
     if (this.root == null) {
-      this.root = node;
-      node.color = nodeColor.BLACK;
-      node.parent = null;
+      this.root = z;
+      z.color = nodeColor.BLACK;
+      z.parent = null;
     } else {
-      node.color = nodeColor.RED;
-      while (true) {
-        if (node.key < temp.key) {
-          if (temp.left == null) {
-              temp.left = node;
-              node.parent = temp;
-              break;
-          } else {
-              temp = temp.left;
-          }
+      while (!this.isNilNode(x)) {
+        y = x;
+        if (z.key < x.key) {
+          x = x.left;
         } else {
-          if (temp.right == null) {
-              temp.right = node;
-              node.parent = temp;
-              break;
-          } else {
-              temp = temp.right;
-          }
+          x = x.right;
         }
       }
-      this.fixTree(node);
+      z.parent = y
+      //current node parent is root
+      if (z.key < y.key) {
+        y.left = z;
+      } else {
+        y.right = z;
+      }
+      //y.right is now z
+      z.left = createLeafNode(z);
+      z.right = createLeafNode(z);
+      z.color = nodeColor.RED;
+      this.fixTree(z);
     }
   }
 
@@ -194,7 +244,7 @@ class RbTree {
         //is a case where we only need a single rotation
         this.rotateRight(node.parent.parent);
       } else {
-        uncle = node.parent.parent.left;
+          uncle = node.parent.parent.left;
           if (uncle != null && uncle.color == nodeColor.RED) {
             node.parent.color = nodeColor.BLACK;
             uncle.color = nodeColor.BLACK;
@@ -215,7 +265,7 @@ class RbTree {
         }
     }
     this.root.color = nodeColor.BLACK;
-  }
+}
 
   /**
   * return the height of a tree
@@ -251,15 +301,15 @@ class RbTree {
     }
     if (node == this.root) {
       // output += node.key + "\n"
-      console.log(node.key);
+      console.log(node.key + " color: " + node.color);
     }
     if (node.left != null) {
       // output += node.left.key;
-      console.log(indent + node.left.key + "(parent node " + node.left.parent.key + ")");
+      console.log(indent + node.left.key+ " color: " + node.left.color + " (parent node " + node.left.parent.key + ")");
     }
     if (node.right != null) {
       // output += node.right.key
-      console.log(indent + node.right.key + "(parent node " + node.right.parent.key + ")");
+      console.log(indent + node.right.key + " color: " + node.right.color + " (parent node " + node.right.parent.key + ")");
     }
     treeHeight -= 1;
     //console.log(output);
@@ -281,7 +331,7 @@ class RbTree {
     if (node == null || node == undefined) {
       return {};
     }
-    while (node.left != null) {
+    while (!this.isNilNode(node.left)) {
       node = node.left;
     }
     return node;
@@ -322,17 +372,11 @@ class RbTree {
   //     y_original_color = y.color;
   //     x = y.right;
   //     if (y.parent == z) {
-  //       if (x == null) {
-  //         x = new Node(null, null);
-  //         x.color = nodeColor.BLACK;
-  //       }
   //       x.parent = y;
   //     } else {
   //       this.transplant(y, y.right);
   //       y.right = z.right;
-  //       if (y.right != null) {
-  //         y.right.parent = y;
-  //       }
+  //       y.right.parent = y;
   //     }
   //     this.transplant(z, y);
   //     y.left = z.left;
@@ -350,6 +394,7 @@ class RbTree {
  */
   // removeFix(node) {
   //   while(node != this.root && node.color == nodeColor.BLACK) {
+  //
   //     if (node == node.parent.left) {
   //       let w = node.parent.right;
   //       if (w.color == nodeColor.RED) {
@@ -387,7 +432,7 @@ class RbTree {
   //         w.color = nodeColor.RED;
   //         node = node.parent;
   //         continue;
-  //       } else if (w.left.color == nodeColor.BLACK) {
+  //       } else if (w.left == null || w.left.color == nodeColor.BLACK) {
   //         w.right.color = nodeColor.BLACK;
   //         w.color = nodeColor.RED;
   //         this.rotateLeft(w);
