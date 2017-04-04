@@ -4,9 +4,14 @@
 
 # A javascript implementation of red-black-tree using ES6 syntax  
 
+### Reference
+* https://www.cs.usfca.edu/~galles/visualization/RedBlack.html visualization  
+* http://ce.bonabu.ac.ir/uploads/30/CMS/user/file/115/EBook/Introduction.to.Algorithms.3rd.Edition.Sep.2010.pdf  book  
+
 ### API  
 * clone  
 * find  
+* findNode  
 * insert  
 * remove  
 * print
