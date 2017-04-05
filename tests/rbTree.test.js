@@ -274,6 +274,21 @@ test('rbTree delete() another case', () => {
 
 });
 
+// test('rbTree delete() case 1 left', () => {
+//
+//   rbTree.insert(30, "abc");
+//   rbTree.insert(20, "foo");
+//   rbTree.insert(40, "bar");
+//   rbTree.insert(17, "bar");
+//   rbTree.insert(26, "bar");
+//   rbTree.insert(18, "bar");
+//
+//   rbTree.remove(40);
+//
+//   rbTree.print();
+//
+// });
+
 // test('rbTree delete() case', () => {
 //
 //   rbTree.insert(10, "abc");
