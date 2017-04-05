@@ -169,22 +169,25 @@ test('rbTree insert()', () => {
   expect(rbTree.root.right.left.key).toBe(26);
   expect(rbTree.root.right.right.key).toBe(28);
   expect(rbTree.root.right.right.right.key).toBe(29);
-  rbTree.print();
-
 });
 
-// test('rbTree delete() case 1', () => {
-//
-//   rbTree.insert(30, "abc");
-//   rbTree.insert(20, "foo");
-//   rbTree.insert(40, "bar");
-//   rbTree.insert(31, "bar");
-//   rbTree.insert(50, "bar");
-//   rbTree.insert(32, "bar");
-//
-//   rbTree.remove(40);
-//   rbTree.print();
-// });
+test('rbTree delete() case 1', () => {
+
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(31, "bar");
+  rbTree.insert(50, "bar");
+  rbTree.insert(32, "bar");
+
+  rbTree.remove(40);
+
+  expect(rbTree.root.key).toBe(30);
+  expect(rbTree.root.left.key).toBe(20);
+  expect(rbTree.root.right.key).toBe(32);
+  expect(rbTree.root.right.left.key).toBe(31);
+  expect(rbTree.root.right.right.key).toBe(50);
+});
 
 test('rbTree findNode() by key ', () => {
 
@@ -199,7 +202,76 @@ test('rbTree findNode() by key ', () => {
   expect(rbTree.findNode(30).key).toBe(30);
   expect(rbTree.findNode(20).key).toBe(20);
   expect(rbTree.findNode(100)).toBe(null);
+});
+
+test('rbTree delete() non-existing node', () => {
+  rbTree.insert(30, "abc");
+  rbTree.remove(0);
+  expect(rbTree.root.key).toBe(30);
+});
+
+test('rbTree delete() simple case', () => {
+  rbTree.insert(30, "abc");
+  rbTree.remove(30);
+  expect(rbTree.root.key).toBe(null);
+});
+
+test('rbTree delete() left side simple case ', () => {
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "abc");
+  rbTree.remove(20);
+  expect(rbTree.root.left.key).toBe(null);
+  expect(rbTree.root.right.key).toBe(null);
+});
+
+test('rbTree delete() right side simple case ', () => {
+  rbTree.insert(30, "abc");
+  rbTree.insert(40, "abc");
+  rbTree.remove(40);
+  expect(rbTree.root.left.key).toBe(null);
+  expect(rbTree.root.right.key).toBe(null);
+});
+
+test('rbTree delete() simple case', () => {
+
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(10, "bar");
+  rbTree.remove(20);
+
+  expect(rbTree.root.key).toBe(30);
+  expect(rbTree.root.left.key).toBe(10);
+  expect(rbTree.root.right.key).toBe(40);
+});
+
+
+test('rbTree delete() current node u is double black and it is not root', () => {
+
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(35, "bar");
+  rbTree.insert(50, "bar");
+
+  rbTree.remove(20);
+  expect(rbTree.root.key).toBe(40);
+  expect(rbTree.root.left.key).toBe(30);
+  expect(rbTree.root.right.key).toBe(50);
+  expect(rbTree.root.left.right.key).toBe(35);
+});
+
+test('rbTree delete() another case', () => {
+
+  rbTree.insert(6, "abc");
+  rbTree.insert(4, "foo");
+  rbTree.insert(7, "bar");
+  rbTree.insert(2, "bar");
+  rbTree.insert(5, "bar");
+
+  rbTree.remove(7);
   rbTree.print();
+
 });
 
 // test('rbTree delete() case', () => {
@@ -215,67 +287,11 @@ test('rbTree findNode() by key ', () => {
 //   rbTree.insert(23, "bar");
 //
 //   rbTree.remove(25);
-//
-// });
-//
-// test('rbTree delete() simple case', () => {
-//
-//   rbTree.insert(30, "abc");
-//   rbTree.insert(20, "foo");
-//   rbTree.insert(40, "bar");
-//   rbTree.insert(10, "bar");
-//
-//   rbTree.remove(20);
-// });
-//
-// test('rbTree delete() both u ,v are black', () => {
-//
-//   rbTree.insert(30, "abc");
-//   rbTree.insert(20, "foo");
-//   rbTree.insert(40, "bar");
-//   rbTree.insert(50, "bar");
-//
-//   rbTree.remove(20);
-// });
-//
-// test('rbTree delete() current node u is double black and it is not root', () => {
-//
-//   rbTree.insert(30, "abc");
-//   rbTree.insert(20, "foo");
-//   rbTree.insert(40, "bar");
-//   rbTree.insert(35, "bar");
-//   rbTree.insert(50, "bar");
-//
-//   rbTree.remove(20);
-//   //rbTree.print();
-// });
-//
-// test('rbTree delete() current node u is double black and it is not root', () => {
-//
-//   rbTree.insert(6, "abc");
-//   rbTree.insert(4, "foo");
-//   rbTree.insert(8, "bar");
-//   rbTree.insert(2, "bar");
-//   rbTree.insert(5, "bar");
-//   rbTree.insert(7, "bar");
-//   rbTree.insert(9, "bar");
-//
-//   rbTree.remove(9);
-// });
-//
-// test('rbTree delete() current node u is double black and it is not root', () => {
-//
-//   rbTree.insert(6, "abc");
-//   rbTree.insert(4, "foo");
-//   rbTree.insert(7, "bar");
-//   rbTree.insert(2, "bar");
-//   rbTree.insert(5, "bar");
-//
-//   rbTree.remove(7);
-//   // rbTree.print();
+//   rbTree.print();
 // });
 
-//
+
+
 // test('rbTree delete() more case', () => {
 //
 //   rbTree.insert(12, "abc");
@@ -300,5 +316,7 @@ test('rbTree findNode() by key ', () => {
 //   rbTree.remove(3);
 //   rbTree.remove(8);
 //   rbTree.remove(11);
+//
+//   rbTree.print();
 //
 // });
