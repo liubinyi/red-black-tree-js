@@ -270,43 +270,62 @@ test('rbTree delete() another case', () => {
   rbTree.insert(5, "bar");
 
   rbTree.remove(7);
-  rbTree.print();
+
+  expect(rbTree.root.key).toBe(4);
+  expect(rbTree.root.left.key).toBe(2);
+  expect(rbTree.root.right.key).toBe(6);
+  expect(rbTree.root.right.left.key).toBe(5);
+});
+
+test('rbTree delete() case 1 left', () => {
+
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(17, "bar");
+  rbTree.insert(26, "bar");
+  rbTree.insert(18, "bar");
+
+  rbTree.remove(40);
+
+  expect(rbTree.root.key).toBe(20);
+  expect(rbTree.root.left.key).toBe(17);
+  expect(rbTree.root.right.key).toBe(30);
+  expect(rbTree.root.left.right.key).toBe(18);
+  expect(rbTree.root.right.left.key).toBe(26);
+  //rbTree.print();
 
 });
 
-// test('rbTree delete() case 1 left', () => {
-//
-//   rbTree.insert(30, "abc");
-//   rbTree.insert(20, "foo");
-//   rbTree.insert(40, "bar");
-//   rbTree.insert(17, "bar");
-//   rbTree.insert(26, "bar");
-//   rbTree.insert(18, "bar");
-//
-//   rbTree.remove(40);
-//
-//   rbTree.print();
-//
-// });
+//need more testing
+test('rbTree delete() case', () => {
 
-// test('rbTree delete() case', () => {
+  rbTree.insert(10, "abc");
+  rbTree.insert(9, "foo");
+  rbTree.insert(27, "bar");
+  rbTree.insert(25, "bar");
+  rbTree.insert(28, "bar");
+  rbTree.insert(29, "bar");
+  rbTree.insert(24, "bar");
+  rbTree.insert(26, "bar");
+  rbTree.insert(23, "bar");
+  // rbTree.print();
+  rbTree.remove(25);
+
+  expect(rbTree.root.key).toBe(26);
+  expect(rbTree.root.left.key).toBe(10);
+  expect(rbTree.root.right.key).toBe(28);
+  expect(rbTree.root.left.left.key).toBe(9);
+  expect(rbTree.root.left.right.key).toBe(24);
+  expect(rbTree.root.left.right.left.key).toBe(23);
+
+  expect(rbTree.root.right.left.key).toBe(27);
+  expect(rbTree.root.right.right.key).toBe(29);
+  rbTree.print();
+});
+
 //
-//   rbTree.insert(10, "abc");
-//   rbTree.insert(9, "foo");
-//   rbTree.insert(27, "bar");
-//   rbTree.insert(25, "bar");
-//   rbTree.insert(28, "bar");
-//   rbTree.insert(29, "bar");
-//   rbTree.insert(24, "bar");
-//   rbTree.insert(26, "bar");
-//   rbTree.insert(23, "bar");
 //
-//   rbTree.remove(25);
-//   rbTree.print();
-// });
-
-
-
 // test('rbTree delete() more case', () => {
 //
 //   rbTree.insert(12, "abc");

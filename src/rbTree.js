@@ -422,7 +422,7 @@ class RbTree {
         }
       } else {
         let w = node.parent.left;
-        if (w.color = nodeColor.RED) {
+        if (w.color == nodeColor.RED) {
           w.color = nodeColor.BLACK;
           node.parent.color = nodeColor.RED;
           this.rotateRight(node.parent);
