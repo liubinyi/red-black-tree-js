@@ -321,36 +321,45 @@ test('rbTree delete() case', () => {
 
   expect(rbTree.root.right.left.key).toBe(27);
   expect(rbTree.root.right.right.key).toBe(29);
-  rbTree.print();
+  //rbTree.print();
 });
 
-//
-//
-// test('rbTree delete() more case', () => {
-//
-//   rbTree.insert(12, "abc");
-//   rbTree.insert(7, "foo");
-//   rbTree.insert(1, "bar");
-//   rbTree.insert(0, "bar");
-//   rbTree.insert(2, "bar");
-//   rbTree.insert(3, "bar");
-//   rbTree.insert(4, "bar");
-//   rbTree.insert(5, "bar");
-//   rbTree.insert(6, "bar");
-//   rbTree.insert(11, "bar");
-//   rbTree.insert(10, "bar");
-//   rbTree.insert(9, "bar");
-//   rbTree.insert(8, "bar");
-//
-//   rbTree.remove(12);
-//   rbTree.remove(7);
-//   rbTree.remove(1);
-//   rbTree.remove(0);
-//   rbTree.remove(2);
-//   rbTree.remove(3);
-//   rbTree.remove(8);
-//   rbTree.remove(11);
-//
-//   rbTree.print();
-//
-// });
+
+//the delete algorithm looks for next highest node by going right then left in the code
+//but in "Red Black Tree Visualizer" it goes left then right to get one lower value node
+//which will replace the deleted node. will come back later
+test('rbTree delete() more case', () => {
+
+  rbTree.insert(12, "abc");
+  rbTree.insert(7, "foo");
+  rbTree.insert(1, "bar");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+  rbTree.insert(3, "bar");
+  rbTree.insert(4, "bar");
+  rbTree.insert(5, "bar");
+  rbTree.insert(6, "bar");
+  rbTree.insert(11, "bar");
+  rbTree.insert(10, "bar");
+  rbTree.insert(9, "bar");
+  rbTree.insert(8, "bar");
+
+  rbTree.remove(12);
+  rbTree.remove(7);
+
+  expect(rbTree.root.key).toBe(3);
+  expect(rbTree.root.left.key).toBe(1);
+  expect(rbTree.root.right.key).toBe(8);
+  expect(rbTree.root.left.left.key).toBe(0);
+  expect(rbTree.root.left.right.key).toBe(2);
+  expect(rbTree.root.right.left.key).toBe(5);
+  expect(rbTree.root.right.right.key).toBe(11);
+  expect(rbTree.root.right.right.left.key).toBe(9);
+  expect(rbTree.root.right.right.left.right.key).toBe(10);
+  expect(rbTree.root.right.left.left.key).toBe(4);
+  expect(rbTree.root.right.left.right.key).toBe(6);
+
+
+  rbTree.print();
+
+});
