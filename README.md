@@ -9,7 +9,7 @@
 * http://ce.bonabu.ac.ir/uploads/30/CMS/user/file/115/EBook/Introduction.to.Algorithms.3rd.Edition.Sep.2010.pdf  book  
 
 ### API  
-* create RB TREE
+* create RB TREE  
 ``` let rbTree = new RbTree() ```  
 * clone  
 ``` rbTree.clone()```  
