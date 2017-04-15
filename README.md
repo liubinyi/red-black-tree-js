@@ -16,12 +16,17 @@
 * find  
 ``` rbTree.find(2)```  
 * findNode  
+``` rbTree.findNode(node)```  
 * insert  
 ```rbTree.insert(1,2)```  
 * remove  
 ```rbTree.remove(1)```  
 * print  
 ```rbTree.print()```  
-* findHeight  
+* toSortedArray
+```rbTree.toSortedArray()```  
+* min()  
+
+* max()  
 
 more docs coming soon..
