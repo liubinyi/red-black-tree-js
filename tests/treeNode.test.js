@@ -17,3 +17,11 @@ test('Node isRed true', () => {
   node.color = nodeColor.RED;
   expect(node.isRed()).toBe(true);
 });
+
+test('Node getValue()', () => {
+  const expected = {
+    key: 1,
+    value: "abc",
+  }
+  expect(node.getValue()).toMatchObject(expected);
+});

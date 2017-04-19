@@ -53,6 +53,21 @@ test('rbTree clone()', () => {
   expect(rbTree.clone(node_1)).toMatchObject(node_1);
 });
 
+test('rbTree toSortedArray()', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.insert(3, "bar");
+  rbTree.insert(4, "bar");
+  rbTree.insert(5, "bar");
+  const expected = [ { key: 1, value: 'abc' },
+        { key: 2, value: 'foo' },
+        { key: 3, value: 'bar' },
+        { key: 4, value: 'bar' },
+        { key: 5, value: 'bar' },
+      ];
+  expect(rbTree.toSortedArray()).toMatchObject(expected);
+});
+
 test('rbTree min() non-null case', () => {
   rbTree.insert(1, "abc");
   rbTree.insert(2, "foo");

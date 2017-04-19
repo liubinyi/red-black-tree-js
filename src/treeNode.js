@@ -26,5 +26,12 @@ class Node {
   isRed() {
     return this.color === nodeColor.RED
   }
+
+  getValue() {
+    return {
+      key: this.key,
+      value: this.value,
+    }
+  }
 }
 export default Node;

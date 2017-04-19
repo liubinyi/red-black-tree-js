@@ -450,12 +450,19 @@ class RbTree {
     node.color = nodeColor.BLACK;
   }
 
-  // toSortedArray() {
-  //   let stack = [];
-  // }
-  //
-  // toArrayHelper(node,stack, pos) {
-  //
-  // }
+  toSortedArray() {
+    let sortedArray = [];
+    this.inOrder(this.root, sortedArray);
+    return sortedArray;
+  }
+
+  inOrder(node, array) {
+    if (this.isNilNode(node)) {
+      return;
+    }
+    this.inOrder(node.left, array);
+    array.push(node.getValue());
+    this.inOrder(node.right, array);
+  }
 }
 export default RbTree;
