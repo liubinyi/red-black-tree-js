@@ -9,9 +9,10 @@
 * http://ce.bonabu.ac.ir/uploads/30/CMS/user/file/115/EBook/Introduction.to.Algorithms.3rd.Edition.Sep.2010.pdf  book  
 
 ### OverView
-* data structure  
+* data structure
+
 | Node | LeafNode |  
-| --- | --- |  
+| ---- | -------- |  
 | *left* | *left(null)* |  
 | *right* | *right(null)* |  
 | *parent* | *parent(null)* |  
