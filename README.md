@@ -18,7 +18,7 @@
 | *parent* | *parent(null)* |  
 | *key* | *key(null)* |  
 | *value* | *value(null)* |  
-| *color* | *value(black)* |  
+| *color* | *color(black)* |  
 
 ### API  
 * create RB TREE  
