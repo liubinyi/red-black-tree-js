@@ -10,14 +10,14 @@
 
 ### OverView
 * data structure  
-Node | LeafNode |
---- | --- |
-*left* | *left(null)* |
-*right* | *right(null)* |
-*parent* | *parent(null)* |
-*key* | *key(null)* |
-*value* | *value(null)* |
-*color* | *value(black)* |
+Node | LeafNode |  
+--- | --- |  
+*left* | *left(null)* |  
+*right* | *right(null)* |  
+*parent* | *parent(null)* |  
+*key* | *key(null)* |  
+*value* | *value(null)* |  
+*color* | *value(black)* |  
 
 ### API  
 * create RB TREE  
