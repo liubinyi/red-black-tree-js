@@ -339,6 +339,22 @@ class RbTree {
     return node;
   }
 
+  minNode() {
+    let node = this.root;
+    while (!this.isNilNode(node.left)) {
+      node = node.left;
+    }
+    return node.getValue();
+  }
+
+  maxNode() {
+    let node = this.root;
+    while (!this.isNilNode(node.right)) {
+      node = node.right;
+    }
+    return node.getValue();
+  }
+
   transplant(u, v) {
     if (u.parent == null) {
       this.root = v;

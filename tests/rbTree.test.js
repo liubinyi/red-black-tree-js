@@ -53,6 +53,26 @@ test('rbTree clone()', () => {
   expect(rbTree.clone(node_1)).toMatchObject(node_1);
 });
 
+test('rbTree minNode()', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.insert(3, "bar");
+  rbTree.insert(4, "bar");
+  rbTree.insert(5, "bar");
+  const expected = { key: 1, value: 'abc' };
+  expect(rbTree.minNode()).toMatchObject(expected);
+});
+
+test('rbTree maxNode()', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.insert(3, "bar");
+  rbTree.insert(4, "bar");
+  rbTree.insert(5, "bar");
+  const expected = { key: 5, value: 'bar' };
+  expect(rbTree.maxNode()).toMatchObject(expected);
+});
+
 test('rbTree toSortedArray()', () => {
   rbTree.insert(1, "abc");
   rbTree.insert(2, "foo");
