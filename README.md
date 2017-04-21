@@ -50,7 +50,15 @@ print out the current tree in a good format
 
 * toSortedArray()  
 ```rbTree.toSortedArray()```  
-return a sorted array of objects that contains key and value   
+return a sorted array of objects that contains key and value  
+
+* minNode()  
+```rbTree.minNode()```  
+return the smallest node value in the tree  
+
+* maxNode()
+```rbTree.maxNode()```  
+return the largest node value in the tree  
 
 
 more docs coming soon..
