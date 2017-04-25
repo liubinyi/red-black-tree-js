@@ -56,7 +56,7 @@ return a sorted array of objects that contains key and value
 ```rbTree.minNode()```  
 return the smallest node value in the tree  
 
-* maxNode()
+* maxNode()  
 ```rbTree.maxNode()```  
 return the largest node value in the tree  
 
