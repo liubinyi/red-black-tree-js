@@ -1,8 +1,8 @@
 {
   "name": "red-black-tree-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A javascript implementation of red-black-tree",
-  "main": "rbTree.js",
+  "main": "dist/rbTree.min.js",
   "scripts": {
     "build": "WEBPACK_ENV=build webpack",
     "lint": "./node_modules/.bin/eslint src/rbTree.js",
