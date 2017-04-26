@@ -4,6 +4,15 @@
 
 # A javascript implementation of red-black-tree using ES6 syntax  
 
+### npm link  
+* https://www.npmjs.com/package/red-black-tree-js  
+
+### npm install  
+``` npm i red-black-tree-js ```
+
+### usage  
+* coming soon...
+
 ### Reference
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html visualization  
 * http://ce.bonabu.ac.ir/uploads/30/CMS/user/file/115/EBook/Introduction.to.Algorithms.3rd.Edition.Sep.2010.pdf  book  
