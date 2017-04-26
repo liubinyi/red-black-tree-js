@@ -11,7 +11,14 @@
 ``` npm i red-black-tree-js ```
 
 ### usage  
-* coming soon...
+```javascript
+import RbTree from "red-black-tree-js"
+const rbTree = new RbTree();
+rbTree.insert(1, "foo");
+rbTree.insert(2, "bar");
+rbTree.remove(1);
+rbTree.print();
+```
 
 ### Reference
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html visualization  
