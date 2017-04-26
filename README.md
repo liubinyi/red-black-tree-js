@@ -22,7 +22,7 @@ rbTree.print();
 
 ### Reference
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html visualization  
-* http://ce.bonabu.ac.ir/uploads/30/CMS/user/file/115/EBook/Introduction.to.Algorithms.3rd.Edition.Sep.2010.pdf  book  
+* https://en.wikipedia.org/wiki/Red%E2%80%93black_tree  wiki  
 
 ### OverView
 * data structure
