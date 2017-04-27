@@ -45,6 +45,7 @@ ____________null color: 1 (parent node 5)
 * data structure
 
 | nodeColor | value |
+| --------- | ----- |
 | BLACK     |  1    |
 | RED       |  0    |
 
