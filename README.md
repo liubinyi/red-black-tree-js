@@ -94,12 +94,34 @@ print out the current tree in a good format
 return a sorted array of objects that contains key and value  
 
 * minNode()  
-```rbTree.minNode()```  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(1, "foo");
+  rbTree.insert(2, "bar");
+  rbTree.insert(3, "bar");
+  const node = rbTree.minNode();
+
+  node is Object {key: 1, value: "foo"}
+```  
 return the smallest node value in the tree  
 
 * maxNode()  
-```rbTree.maxNode()```  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(1, "foo");
+  rbTree.insert(2, "bar");
+  rbTree.insert(3, "bar");
+  const node = rbTree.maxNode();
+
+  node is Object {key: 3, value: "bar"}
+```   
 return the largest node value in the tree  
 
 
 more docs coming soon..
+
+* future work  
+clean up the api  
+improve code quality  
+switch this to Persistent  red black tree?
+and more ...
