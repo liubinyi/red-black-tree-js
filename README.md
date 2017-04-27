@@ -90,8 +90,9 @@ print out the current tree in a good format
   const array = rbTree.toSortedArray();
 
   array is [Object, Object, Object, Object, Object, Object]
+  return a sorted array of objects that contains key and value
 ```  
-return a sorted array of objects that contains key and value  
+
 
 * minNode()  
 ```javascript
@@ -102,8 +103,8 @@ return a sorted array of objects that contains key and value
   const node = rbTree.minNode();
 
   node is Object {key: 1, value: "foo"}
-```  
-return the smallest node value in the tree  
+  return the smallest node value in the tree
+```   
 
 * maxNode()  
 ```javascript
@@ -114,8 +115,8 @@ return the smallest node value in the tree
   const node = rbTree.maxNode();
 
   node is Object {key: 3, value: "bar"}
-```   
-return the largest node value in the tree  
+  return the largest node value in the tree
+```     
 
 
 more docs coming soon..
