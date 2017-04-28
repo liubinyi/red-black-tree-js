@@ -106,7 +106,7 @@ print out the current tree in a good format
   rbTree.insert(3, "bar");
   const array = rbTree.toSortedArray();
 
-  array is [Object, Object, Object, Object, Object, Object]
+  array is [Object, Object, Object]
   return a sorted array of objects that contains key and value
 ```  
 
