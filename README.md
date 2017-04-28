@@ -61,18 +61,30 @@ ____________null color: 1 (parent node 5)
 ### API  
 * create RB TREE  
 ``` let rbTree = new RbTree() ```  
-create a red black tree with root = null  
-
-* clone  
-``` rbTree.clone()```  
+create a red black tree with root = null   
 
 * find  
-``` rbTree.find(2)```  
-find value by key  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(1, "foo");
+  rbTree.insert(2, "bar");
+  rbTree.insert(3, "bar");
+  const value = rbTree.find(2);
+
+  value is "bar"
+  Look up value by it's key
+```      
 
 * findNode  
-``` rbTree.findNode(node)```  
-return the value of the node  
+``javascript
+  const rbTree = new RbTree();
+  rbTree.insert(1, "foo");
+  rbTree.insert(2, "bar");
+  rbTree.insert(3, "bar");
+  const node = rbTree.findNode(2);
+
+  return the node object
+```        
 
 * insert  
 ```rbTree.insert(1, "abc")```
@@ -80,7 +92,7 @@ insert a key and a value to a node
 
 * remove  
 ```rbTree.remove(1)```  
-remove node by key  
+remove a node by its key  
 
 * print  
 ```rbTree.print()```  
@@ -97,7 +109,6 @@ print out the current tree in a good format
   array is [Object, Object, Object, Object, Object, Object]
   return a sorted array of objects that contains key and value
 ```  
-
 
 * minNode()  
 ```javascript
