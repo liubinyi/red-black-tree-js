@@ -76,7 +76,7 @@ create a red black tree with root = null
 ```      
 
 * findNode  
-``javascript
+```javascript
   const rbTree = new RbTree();
   rbTree.insert(1, "foo");
   rbTree.insert(2, "bar");
@@ -88,7 +88,7 @@ create a red black tree with root = null
 
 * insert  
 ```rbTree.insert(1, "abc")```
-insert a key and a value to a node  
+insert a key and a value to a node   
 
 * remove  
 ```rbTree.remove(1)```  
