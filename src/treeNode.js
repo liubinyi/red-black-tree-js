@@ -1,5 +1,6 @@
 'use strict';
 import nodeColor from './color'
+import { toNumber } from './helper';
 /**
  * Node of the red black tree
  * constructor
@@ -12,7 +13,7 @@ import nodeColor from './color'
 
 class Node {
   constructor(key, value) {
-    this.key = key;
+    this.key = toNumber(key);
     this.value = value;
     this.left = null;
     this.right = null;

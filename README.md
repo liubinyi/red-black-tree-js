@@ -2,13 +2,16 @@
 [![Coverage Status](https://coveralls.io/repos/github/liubinyi/red-black-tree-js/badge.svg?branch=master)](https://coveralls.io/github/liubinyi/red-black-tree-js?branch=master)
 
 
-# A javascript implementation of red-black-tree using ES6 syntax  
+# A javascript implementation of red-black-tree using ES6
 
 ### npm link  
 * https://www.npmjs.com/package/red-black-tree-js  
 
 ### npm install  
-``` npm i red-black-tree-js ```
+``` npm i red-black-tree-js ```  
+
+### Thanks for using it!  
+
 
 ### usage  
 ```javascript
@@ -35,6 +38,21 @@ ____________null color: 1 (parent node 3)
 ____________null color: 1 (parent node 3)
 ____________null color: 1 (parent node 5)
 ____________null color: 1 (parent node 5)
+```  
+
+
+### The tree structure currently support insertion for string.  
+##### There will be more supports added for inserting a key as string in the next release.  
+For example:  
+letter 'a' will be treated as 97  
+letter 'b' will be treated as 98  
+letter 'A' will be treated as 65  
+a string like "apple" that start with 'a' will be treat as 97(for now)  
+a string like "boy" that start with b will be treat as 97(for now)  
+```javascript
+  rbTree.insert("a", "foo");
+  rbTree.insert("boy", "foo");
+  rbTree.insert("Am", "bar");  
 ```
 
 ### Reference

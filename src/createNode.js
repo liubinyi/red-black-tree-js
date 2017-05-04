@@ -1,6 +1,6 @@
 'use strict';
 import Node from './treeNode';
-import nodeColor from './color'
+import nodeColor from './color';
 
 function createNode(key, value) {
   let node = new Node(key, value);

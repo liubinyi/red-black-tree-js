@@ -11,6 +11,7 @@ import Node from './treeNode';
 import nodeColor from './color';
 import createNode from './createNode';
 import createLeafNode from './createLeafNode';
+import { toNumber } from './helper';
 
 /**
  * constructor
@@ -38,7 +39,8 @@ class RbTree {
 /**
  * find value by node key
  */
-  find(key) {
+  find(input) {
+    let key = toNumber(input);
     let node = this.root;
     while (node != null) {
       if (key < node.key) {
@@ -155,35 +157,7 @@ class RbTree {
   * If x is root, change color of node as BLACK (Black height +1).
   */
   insert(key, value) {
-    // let node = createNode(key, value);
-    // let temp = this.root;
-    // if (this.root == null) {
-    //   this.root = node;
-    //   node.color = nodeColor.BLACK;
-    //   node.parent = null;
-    // } else {
-    //   node.color = nodeColor.RED;
-    //   while (true) {
-    //     if (node.key < temp.key) {
-    //       if (this.isNilNode(temp.left)) {
-    //           temp.left = node;
-    //           node.parent = temp;
-    //           break;
-    //       } else {
-    //           temp = temp.left;
-    //       }
-    //     } else {
-    //       if (this.isNilNode(temp.right)) {
-    //           temp.right = node;
-    //           node.parent = temp;
-    //           break;
-    //       } else {
-    //           temp = temp.right;
-    //       }
-    //     }
-    //   }
-    //   this.fixTree(node);
-    // }
+
     let y = null;
     let x = this.root;
     const z = createNode(key, value);
