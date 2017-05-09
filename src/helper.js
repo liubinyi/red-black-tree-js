@@ -1,7 +1,18 @@
 export function toNumber(key) {
-  //if key is a number
+
+  const offset = 96;
+  //if key is not a number
   if (isNaN(key) && typeof key === "string") {
-    return key.charCodeAt(0);
+    const keyToLower = key.toLowerCase();
+    if (keyToLower.length > 1) {
+      let number = '';
+      //converting each letter to a number
+      for (let ch of keyToLower) {
+        number += ch.charCodeAt(0) - offset + '';
+      }
+      return parseInt(number);
+    }
+    return keyToLower.charCodeAt(0) - offset;
   }
   return key;
 }

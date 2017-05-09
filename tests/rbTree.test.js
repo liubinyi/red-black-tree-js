@@ -187,9 +187,9 @@ test('rbTree insert()', () => {
   rbTree.insert('a', "foo");
   rbTree.insert(100, "foo");
 
-  expect(rbTree.root.key).toBe(97);
-  expect(rbTree.root.left.key).toBe(10);
-  expect(rbTree.root.right.key).toBe(98);
+  expect(rbTree.root.key).toBe(2);
+  expect(rbTree.root.left.key).toBe(1);
+  expect(rbTree.root.right.key).toBe(10);
   expect(rbTree.root.right.right.key).toBe(100);
 });
 
