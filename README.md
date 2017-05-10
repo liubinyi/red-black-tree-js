@@ -41,7 +41,7 @@ ____________null color: 1 (parent node 5)
 ```  
 
 
-### The tree structure currently also support inserting string as keys .  
+### The tree structure now support inserting string as keys .  
 ##### For example:  
 
 letter 'a' will be treated as 1  
