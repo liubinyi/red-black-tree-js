@@ -41,18 +41,24 @@ ____________null color: 1 (parent node 5)
 ```  
 
 
-### The tree structure currently support insertion for string.  
-##### There will be more supports added for inserting a key as string in the next release.  
-For example:  
-letter 'a' will be treated as 97  
-letter 'b' will be treated as 98  
-letter 'A' will be treated as 65  
-a string like "apple" that start with 'a' will be treat as 97(for now)  
-a string like "boy" that start with b will be treat as 97(for now)  
+### The tree structure currently also support inserting string as keys .  
+##### For example:  
+
+letter 'a' will be treated as 1  
+letter 'b' will be treated as 2  
+letter 'b' will be treated as 3  
+letter 'A' will be treated as 1 as well  
+letter 'B' will be treated as 2 as well  
+letter 'C' will be treated as 3 as well  
+a string like "abc" will be treated as 123  
+a string like "Abc" will be treated as 123  
+a string like "dc" will be treated as 41   
+
 ```javascript
-  rbTree.insert("a", "foo");
-  rbTree.insert("boy", "foo");
-  rbTree.insert("Am", "bar");  
+  rbTree.insert("id", 1001) => rbTree.insert(94, 1001);
+  rbTree.insert("a", "foo") => rbTree.insert(1, "foo");  
+  rbTree.insert("Am", "bar")=> rbTree.insert(113, "foo");  
+  rbTree.insert("boy", "foo") => rbTree.insert(21525, "foo");  
 ```
 
 ### Reference
