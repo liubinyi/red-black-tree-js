@@ -162,8 +162,8 @@ print out the current tree in a good format
 more docs coming soon..
 
 * future work  
-tree support insertion for  letters and string
+Better print format
 clean up the api  
 improve code quality  
-switch this to Persistent  red black tree?
+switch this to Persistent red black tree?
 and more ...
