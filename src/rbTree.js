@@ -76,6 +76,11 @@ class RbTree {
     return null;
   }
 
+  update(key,value) {
+    let node = this.findNode(key);
+    node.value = value;
+  }
+
 /**
   * Complexity: O(1).
   *       y                   x

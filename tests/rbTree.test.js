@@ -53,6 +53,15 @@ test('rbTree clone()', () => {
   expect(rbTree.clone(node_1)).toMatchObject(node_1);
 });
 
+test('rbTree update()', () => {
+  rbTree.insert(1, "abc");
+  rbTree.insert(2, "foo");
+  rbTree.insert(3, "bar");
+  rbTree.update(3, "updated");
+  expect(rbTree.find(3)).toBe("updated");
+  expect(rbTree.root.right.value).toBe("updated");
+});
+
 test('rbTree minNode()', () => {
   rbTree.insert(1, "abc");
   rbTree.insert(2, "foo");
