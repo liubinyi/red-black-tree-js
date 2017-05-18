@@ -110,6 +110,17 @@ create a red black tree with root = null
   return the node object
 ```        
 
+* update  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(1, "foo");
+  rbTree.insert(2, "bar");
+
+  rbTree.update(2, "updated")
+
+  now the value is "updated"
+```  
+
 * insert  
 ```rbTree.insert(1, "abc")```
 insert a key and a value to a node   
