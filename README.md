@@ -172,9 +172,8 @@ print out the current tree in a good format
 
 more docs coming soon..
 
-* future work  
-add update method  
-Better print format
+* future work   
+Better print format 
 clean up the api  
 pass all linter  
 and more ...
