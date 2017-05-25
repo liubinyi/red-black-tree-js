@@ -451,6 +451,18 @@ class RbTree {
     return sortedArray;
   }
 
+  toArrayPreOrder() {
+    const preOrderArray = [];
+    this.preOrder(this.root, preOrderArray);
+    return preOrderArray;
+  }
+
+  toArrayPostOrder() {
+    const postOrderArray = [];
+    this.postOrder(this.root, postOrderArray);
+    return postOrderArray;
+  }
+
   inOrder(node, array) {
     if (this.isNilNode(node)) {
       return;
@@ -459,5 +471,24 @@ class RbTree {
     array.push(node.getValue());
     this.inOrder(node.right, array);
   }
+
+  preOrder(node, array) {
+    if (this.isNilNode(node)) {
+      return;
+    }
+    array.push(node.getValue());
+    this.preOrder(node.left, array);
+    this.preOrder(node.right, array);
+  }
+
+  postOrder(node, array) {
+    if (this.isNilNode(node)) {
+      return;
+    }
+    this.postOrder(node.left, array);
+    this.postOrder(node.right, array);
+    array.push(node.getValue());
+  }
+
 }
 export default RbTree;

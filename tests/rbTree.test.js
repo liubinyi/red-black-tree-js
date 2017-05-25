@@ -97,6 +97,36 @@ test('rbTree toSortedArray()', () => {
   expect(rbTree.toSortedArray()).toMatchObject(expected);
 });
 
+test('rbTree toArrayPreOrder()', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+  const expected = [ { key: 3, value: 'abc' },
+        { key: 1, value: 'foo' },
+        { key: 0, value: 'bar' },
+        { key: 2, value: 'bar' },
+        { key: 4, value: 'abc' },
+      ];
+  expect(rbTree.toArrayPreOrder()).toMatchObject(expected);
+});
+
+test('rbTree toArrayPostOrder()', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+  const expected = [ { key: 0, value: 'bar' },
+        { key: 2, value: 'bar' },
+        { key: 1, value: 'foo' },
+        { key: 4, value: 'abc' },
+        { key: 3, value: 'abc' },
+      ];
+  expect(rbTree.toArrayPostOrder()).toMatchObject(expected);
+});
+
 test('rbTree min() non-null case', () => {
   rbTree.insert(1, "abc");
   rbTree.insert(2, "foo");
