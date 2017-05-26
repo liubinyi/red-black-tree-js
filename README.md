@@ -145,6 +145,36 @@ print out the current tree in a good format
   return a sorted array of objects that contains key and value
 ```  
 
+* toArrayPreOrder()  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+  const array = rbTree.toArrayPreOrder();
+
+  array is [Object, Object, Object, Object, Object]
+  return an array of objects that contains key and value
+  the key order is [3, 1, 0, 2, 4]
+```  
+
+* toArrayPostOrder()  
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+  const array = rbTree.toArrayPostOrder();
+
+  array is [Object, Object, Object, Object, Object]
+  the key order is [0, 2, 1, 4, 3]
+  return an array of objects that contains key and value
+```  
+
 * minNode()  
 ```javascript
   const rbTree = new RbTree();
@@ -173,7 +203,8 @@ print out the current tree in a good format
 more docs coming soon..
 
 * future work   
-Better print format 
+Better print format
+add successor
 clean up the api  
 pass all linter  
 and more ...
