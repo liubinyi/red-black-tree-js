@@ -203,8 +203,8 @@ print out the current tree in a good format
 more docs coming soon..
 
 * future work   
-Better print format
-add successor
+support iterator  
+Better print format  
 clean up the api  
 pass all linter  
 and more ...
