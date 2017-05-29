@@ -1,10 +1,11 @@
 /**
 * this file contains tests for rbTree
 */
-import prettyFormat from 'pretty-format'
+import prettyFormat from 'pretty-format';
 import RbTree from "../src/rbTree";
-import Node from '../src/treeNode'
-import nodeColor from '../src/color'
+import Node from '../src/treeNode';
+import nodeColor from '../src/color';
+import createNode from '../src/createNode';
 
 let rbTree;
 
@@ -125,6 +126,94 @@ test('rbTree toArrayPostOrder()', () => {
         { key: 3, value: 'abc' },
       ];
   expect(rbTree.toArrayPostOrder()).toMatchObject(expected);
+});
+
+test('rbTree inOrderSucc() left subtree case', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root.left.left;
+  const expected = {key: 1, value: 'foo'};
+  expect(rbTree.inOrderSucc(node)).toMatchObject(expected);
+});
+
+test('rbTree inOrderSucc() root case', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root;
+  const expected = {key: 4, value: 'abc'};
+  expect(rbTree.inOrderSucc(node)).toMatchObject(expected);
+});
+
+test('rbTree inOrderSucc() case finish', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root.right.right;
+  expect(rbTree.inOrderSucc(node)).toBe(null);
+});
+
+test('rbTree inOrderSucc() case right subtree: node is not its parents left child', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root.right;
+  expect(rbTree.inOrderSucc(node)).toBe(null);
+});
+
+test('rbTree inOrderSucc() case leafNode', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root.left.left;
+  const expected = {key: 1, value: 'foo'};
+  expect(rbTree.inOrderSucc(node)).toMatchObject(expected);
+});
+
+test('rbTree inOrderSucc() right', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root.left.left;
+  const expected = {key: 1, value: 'foo'};
+  expect(rbTree.inOrderSucc(node)).toMatchObject(expected);
+});
+
+test('rbTree leftMostChild() ', () => {
+  rbTree.insert(3, "abc");
+
+  const node = rbTree.root.left;
+  expect(rbTree.leftMostChild(node)).toBe(null);
+});
+
+test('rbTree leftMostChild() ', () => {
+  rbTree.insert(3, "abc");
+  rbTree.insert(4, "abc");
+  rbTree.insert(1, "foo");
+  rbTree.insert(0, "bar");
+  rbTree.insert(2, "bar");
+
+  const node = rbTree.root;
+  expect(rbTree.leftMostChild(node)).toBe(rbTree.root.left.left);
 });
 
 test('rbTree min() non-null case', () => {
@@ -379,7 +468,6 @@ test('rbTree delete() case 1 left', () => {
   expect(rbTree.root.right.key).toBe(30);
   expect(rbTree.root.left.right.key).toBe(18);
   expect(rbTree.root.right.left.key).toBe(26);
-  //rbTree.print();
 
 });
 
@@ -395,7 +483,6 @@ test('rbTree delete() case', () => {
   rbTree.insert(24, "bar");
   rbTree.insert(26, "bar");
   rbTree.insert(23, "bar");
-  // rbTree.print();
   rbTree.remove(25);
 
   expect(rbTree.root.key).toBe(26);
@@ -407,7 +494,6 @@ test('rbTree delete() case', () => {
 
   expect(rbTree.root.right.left.key).toBe(27);
   expect(rbTree.root.right.right.key).toBe(29);
-  //rbTree.print();
 });
 
 

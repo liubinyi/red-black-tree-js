@@ -60,6 +60,16 @@ class RbTree {
            && node.left == null && node.right == null);
   }
 
+  leftMostChild(node) {
+    if (this.isNilNode(node)) {
+      return null;
+    }
+    while (!this.isNilNode(node.left)) {
+      node =  node.left
+    }
+    return node;
+  }
+
   findNode(key) {
     let node = this.root;
     while (node != null) {
@@ -443,6 +453,31 @@ class RbTree {
       }
     }
     node.color = nodeColor.BLACK;
+  }
+
+  inOrderSucc(node) {
+    if (this.isNilNode(node)) {
+      return null;
+    }
+    // when a right child exist
+    if (!this.isNilNode(node.right)) {
+      return this.leftMostChild(node.right).getValue();
+
+    // Where no right child exists
+    } else {
+      let curr = node;
+      let p = node.parent;
+      // if this node is not its parent's left child
+      while(p != null && p.left !== curr) {
+        curr = p;
+        p = p.parent;
+      }
+      //when there is no successor
+      if (p == null) {
+        return null;
+      }
+      return p.getValue();
+    }
   }
 
   toSortedArray() {
