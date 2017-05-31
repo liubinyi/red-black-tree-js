@@ -133,6 +133,19 @@ remove a node by its key
 ```rbTree.print()```  
 print out the current tree in a good format  
 
+* inOrderSucc(node)
+```javascript
+  const rbTree = new RbTree();
+  rbTree.insert(2, "foo");
+  rbTree.insert(1, "bar");
+  rbTree.insert(3, "bar");
+
+  let next = rbTree.inOrderSucc(rbTree.root)
+  console.log(next)
+  {key : 3, value: "bar"}
+
+```  
+
 * toSortedArray()  
 ```javascript
   const rbTree = new RbTree();
