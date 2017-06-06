@@ -3,8 +3,6 @@
 /* eslint  camelcase: 0 */  // --> OFF
 /* eslint  console: 0 */  // --> OFF
 /* eslint  no-lonely-if: 0 */  // --> OFF
-/* eslint  quotes: 0 */  // --> OFF
-/* eslint  prefer-template: 0 */  // --> OFF
 /* eslint  no-continue: 0 */  // --> OFF
 
 import Node from './treeNode';
@@ -40,7 +38,7 @@ class RbTree {
  * find value by node key
  */
   find(input) {
-    let key = toNumber(input);
+    const key = toNumber(input);
     let node = this.root;
     while (node != null) {
       if (key < node.key) {
@@ -65,7 +63,7 @@ class RbTree {
       return null;
     }
     while (!this.isNilNode(node.left)) {
-      node =  node.left
+      node = node.left;
     }
     return node;
   }
@@ -86,8 +84,8 @@ class RbTree {
     return null;
   }
 
-  update(key,value) {
-    let node = this.findNode(key);
+  update(key, value) {
+    const node = this.findNode(key);
     node.value = value;
   }
 
@@ -172,7 +170,6 @@ class RbTree {
   * If x is root, change color of node as BLACK (Black height +1).
   */
   insert(key, value) {
-
     let y = null;
     let x = this.root;
     const z = createNode(key, value);
@@ -286,7 +283,7 @@ class RbTree {
   */
   print() {
     const height = this.findHeight(this.root) + 1;
-    this.printHelper(this.root, '___', height);
+    this.printHelper(this.root, '__', height);
   }
 
   printHelper(node, indent, height) {
@@ -297,13 +294,15 @@ class RbTree {
       return;
     }
     if (node === this.root) {
-      console.log(node.key + ' color: ' + node.color);
+      console.log(`${node.key} color: ${node.color}`);
     }
     if (node.left != null) {
-      console.log(indent + node.left.key + ' color: ' + node.left.color + " (parent node " + node.left.parent.key + ")");
+      const parentInfo = `( parent node ${node.left.parent.key})`;
+      console.log(`${indent}${node.left.key} color: ${node.left.color} ${parentInfo}`);
     }
     if (node.right != null) {
-      console.log(indent + node.right.key + ' color: ' + node.right.color + " (parent node " + node.right.parent.key + ")");
+      const parentInfo = `( parent node ${node.right.parent.key})`;
+      console.log(`${indent}${node.right.key} color: ${node.right.color} ${parentInfo}`);
     }
     treeHeight -= 1;
     this.printHelper(node.left, indent + indent, treeHeight);
@@ -464,15 +463,15 @@ class RbTree {
       return this.leftMostChild(node.right).getValue();
 
     // Where no right child exists
-    } else {
+    } else { // eslint-disable-line
       let curr = node;
       let p = node.parent;
       // if this node is not its parent's left child
-      while(p != null && p.left !== curr) {
+      while (p != null && p.left !== curr) {
         curr = p;
         p = p.parent;
       }
-      //when there is no successor
+      // when there is no successor
       if (p == null) {
         return null;
       }
