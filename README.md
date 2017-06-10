@@ -99,7 +99,7 @@ create a red black tree with root = null
   Look up value by it's key
 ```      
 
-* findNode  
+* findNode(key)    
 ```javascript
   const rbTree = new RbTree();
   rbTree.insert(1, "foo");
@@ -110,7 +110,7 @@ create a red black tree with root = null
   return the node object
 ```        
 
-* update  
+* update(key, value)    
 ```javascript
   const rbTree = new RbTree();
   rbTree.insert(1, "foo");
@@ -121,15 +121,15 @@ create a red black tree with root = null
   now the value is "updated"
 ```  
 
-* insert  
+* insert(key, value)    
 ```rbTree.insert(1, "abc")```
 insert a key and a value to a node   
 
-* remove  
+* remove(key)    
 ```rbTree.remove(1)```  
 remove a node by its key  
 
-* print  
+* print()    
 ```rbTree.print()```  
 print out the current tree in a good format  
 
@@ -216,8 +216,6 @@ print out the current tree in a good format
 more docs coming soon..
 
 * future work   
-support iterator  
-Better print format  
-clean up the api  
-pass all linter  
+Better print format   
+Pass all linter  
 and more ...
