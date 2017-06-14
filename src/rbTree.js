@@ -9,7 +9,8 @@ import Node from './treeNode';
 import nodeColor from './color';
 import createNode from './createNode';
 import createLeafNode from './createLeafNode';
-import { toNumber } from './helper';
+import iterator from './iterator';
+import { toNumber, isNilNode } from './helper';
 
 /**
  * constructor
@@ -52,17 +53,11 @@ class RbTree {
     return null;
   }
 
-  isNilNode(node) {
-    return node == null || (node.key == null && node.value == null
-           && node.color === nodeColor.BLACK
-           && node.left == null && node.right == null);
-  }
-
   leftMostChild(node) {
-    if (this.isNilNode(node)) {
+    if (isNilNode(node)) {
       return null;
     }
-    while (!this.isNilNode(node.left)) {
+    while (!isNilNode(node.left)) {
       node = node.left;
     }
     return node;
@@ -103,17 +98,17 @@ class RbTree {
   rotateRight(node) {
     const y = node.left;
 
-    if (this.isNilNode(y.right)) {
+    if (isNilNode(y.right)) {
       node.left = createLeafNode(node);
     } else {
       node.left = y.right;
     }
 
-    if (!this.isNilNode(y.right)) {
+    if (!isNilNode(y.right)) {
       y.right.parent = node;
     }
     y.parent = node.parent;
-    if (this.isNilNode(node.parent)) {
+    if (isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node === node.parent.right) {
@@ -141,17 +136,17 @@ class RbTree {
     const y = node.right;
 
     // console.log(y.left)
-    if (this.isNilNode(y.left)) {
+    if (isNilNode(y.left)) {
       node.right = createLeafNode(node);
     } else {
       node.right = y.left;
     }
 
-    if (!this.isNilNode(y.left)) {
+    if (!isNilNode(y.left)) {
       y.left.parent = node;
     }
     y.parent = node.parent;
-    if (this.isNilNode(node.parent)) {
+    if (isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node === node.parent.left) {
@@ -178,7 +173,7 @@ class RbTree {
       z.color = nodeColor.BLACK;
       z.parent = null;
     } else {
-      while (!this.isNilNode(x)) {
+      while (!isNilNode(x)) {
         y = x;
         if (z.key < x.key) {
           x = x.left;
@@ -323,7 +318,7 @@ class RbTree {
     if (node == null || node === undefined) {
       return {};
     }
-    while (!this.isNilNode(node.left)) {
+    while (!isNilNode(node.left)) {
       node = node.left;
     }
     return node;
@@ -331,7 +326,7 @@ class RbTree {
 
   minNode() {
     let node = this.root;
-    while (!this.isNilNode(node.left)) {
+    while (!isNilNode(node.left)) {
       node = node.left;
     }
     return node.getValue();
@@ -339,7 +334,7 @@ class RbTree {
 
   maxNode() {
     let node = this.root;
-    while (!this.isNilNode(node.right)) {
+    while (!isNilNode(node.right)) {
       node = node.right;
     }
     return node.getValue();
@@ -369,10 +364,10 @@ class RbTree {
     let x;
     let y = z;
     let y_original_color = y.color;
-    if (this.isNilNode(z.left)) {
+    if (isNilNode(z.left)) {
       x = z.right;
       this.transplant(z, z.right);
-    } else if (this.isNilNode(z.right)) {
+    } else if (isNilNode(z.right)) {
       x = z.left;
       this.transplant(z, z.left);
     } else {
@@ -455,11 +450,11 @@ class RbTree {
   }
 
   inOrderSucc(node) {
-    if (this.isNilNode(node)) {
+    if (isNilNode(node)) {
       return null;
     }
     // when a right child exist
-    if (!this.isNilNode(node.right)) {
+    if (!isNilNode(node.right)) {
       return this.leftMostChild(node.right).getValue();
 
     // Where no right child exists
@@ -498,7 +493,7 @@ class RbTree {
   }
 
   inOrder(node, array) {
-    if (this.isNilNode(node)) {
+    if (isNilNode(node)) {
       return;
     }
     this.inOrder(node.left, array);
@@ -507,7 +502,7 @@ class RbTree {
   }
 
   preOrder(node, array) {
-    if (this.isNilNode(node)) {
+    if (isNilNode(node)) {
       return;
     }
     array.push(node.getValue());
@@ -516,12 +511,16 @@ class RbTree {
   }
 
   postOrder(node, array) {
-    if (this.isNilNode(node)) {
+    if (isNilNode(node)) {
       return;
     }
     this.postOrder(node.left, array);
     this.postOrder(node.right, array);
     array.push(node.getValue());
+  }
+
+  createIterator() {
+    return new iterator(this.root);
   }
 
 }

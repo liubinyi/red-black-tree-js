@@ -535,3 +535,22 @@ test('rbTree delete() more case', () => {
   rbTree.print();
 
 });
+
+test('rbTree createIterator()', () => {
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(10, "bar");
+  const iterator = rbTree.createIterator();
+
+  let result = [];
+  while (iterator.hasNext()) {
+    result.push(iterator.next());
+  }
+  const expected = [ { key: 10, value: 'bar' },
+        { key: 20, value: 'foo' },
+        { key: 30, value: 'abc' },
+        { key: 40, value: 'bar' },
+      ];
+  expect(result).toMatchObject(expected);
+});

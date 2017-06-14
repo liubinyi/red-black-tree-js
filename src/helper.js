@@ -1,3 +1,5 @@
+import nodeColor from './color';
+
 export function toNumber(key) {
 
   const offset = 96;
@@ -15,4 +17,10 @@ export function toNumber(key) {
     return keyToLower.charCodeAt(0) - offset;
   }
   return key;
+}
+
+export function isNilNode(node) {
+  return node == null || (node.key == null && node.value == null
+         && node.color === nodeColor.BLACK
+         && node.left == null && node.right == null);
 }
