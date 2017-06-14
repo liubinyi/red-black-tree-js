@@ -16,6 +16,8 @@
 ### usage  
 ```javascript
 import RbTree from "red-black-tree-js"
+
+
 const rbTree = new RbTree();
 rbTree.insert(1, "foo");
 rbTree.insert(2, "bar");
@@ -24,42 +26,15 @@ rbTree.insert(4, "bar");
 rbTree.insert(5, "bar");
 rbTree.insert(6, "bar");
 rbTree.remove(6);
-rbTree.print();
 
+const iterator = rbTree.createIterator();
 
-2 color: 1
-___1 color: 1 (parent node 2)
-___4 color: 0 (parent node 2)
-______null color: 1 (parent node 1)
-______null color: 1 (parent node 1)
-______3 color: 1 (parent node 4)
-______5 color: 1 (parent node 4)
-____________null color: 1 (parent node 3)
-____________null color: 1 (parent node 3)
-____________null color: 1 (parent node 5)
-____________null color: 1 (parent node 5)
+let result = [];
+while (iterator.hasNext()) {
+  result.push(iterator.next());
+}
+
 ```  
-
-
-### The tree structure now support inserting string as keys .  
-##### For example:  
-
-letter 'a' will be treated as 1  
-letter 'b' will be treated as 2  
-letter 'b' will be treated as 3  
-letter 'A' will be treated as 1 as well  
-letter 'B' will be treated as 2 as well  
-letter 'C' will be treated as 3 as well  
-a string like "abc" will be treated as 123  
-a string like "Abc" will be treated as 123  
-a string like "dc" will be treated as 41   
-
-```javascript
-  rbTree.insert("id", 1001) => rbTree.insert(94, 1001);
-  rbTree.insert("a", "foo") => rbTree.insert(1, "foo");  
-  rbTree.insert("Am", "bar")=> rbTree.insert(113, "foo");  
-  rbTree.insert("boy", "foo") => rbTree.insert(21525, "foo");  
-```
 
 ### Reference
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html visualization  
@@ -98,6 +73,22 @@ create a red black tree with root = null
   value is "bar"
   Look up value by it's key
 ```      
+* iterator()
+return the next smallest number
+
+```javascript
+  rbTree.insert(30, "abc");
+  rbTree.insert(20, "foo");
+  rbTree.insert(40, "bar");
+  rbTree.insert(10, "bar");
+  const iterator = rbTree.createIterator();
+
+  let result = [];
+  while (iterator.hasNext()) {
+    result.push(iterator.next());
+  }
+
+```    
 
 * findNode(key)    
 ```javascript
@@ -108,7 +99,7 @@ create a red black tree with root = null
   const node = rbTree.findNode(2);
 
   return the node object
-```        
+```   
 
 * update(key, value)    
 ```javascript
@@ -130,7 +121,22 @@ insert a key and a value to a node
 remove a node by its key  
 
 * print()    
-```rbTree.print()```  
+```javascript
+   rbTree.insert(30, "abc");
+   rbTree.insert(20, "foo");
+   rbTree.insert(40, "bar");
+   rbTree.insert(10, "bar");
+   rbTree.print();
+
+   30 color: 1
+   ___20 color: 0 (parent node 30)
+   ___40 color: 0 (parent node 30)
+   ______null color: 1 (parent node 20)
+   ______null color: 1 (parent node 20)
+   ______null color: 1 (parent node 40)
+   ______null color: 1 (parent node 40)
+
+```
 print out the current tree in a good format  
 
 * inOrderSucc(node)
@@ -213,7 +219,25 @@ print out the current tree in a good format
 ```     
 
 
-more docs coming soon..
+### The tree structure now support inserting string as keys .  
+##### For example:  
+
+letter 'a' will be treated as 1  
+letter 'b' will be treated as 2  
+letter 'b' will be treated as 3  
+letter 'A' will be treated as 1 as well  
+letter 'B' will be treated as 2 as well  
+letter 'C' will be treated as 3 as well  
+a string like "abc" will be treated as 123  
+a string like "Abc" will be treated as 123  
+a string like "dc" will be treated as 41   
+
+```javascript
+  rbTree.insert("id", 1001) => rbTree.insert(94, 1001);
+  rbTree.insert("a", "foo") => rbTree.insert(1, "foo");  
+  rbTree.insert("Am", "bar")=> rbTree.insert(113, "foo");  
+  rbTree.insert("boy", "foo") => rbTree.insert(21525, "foo");  
+```  
 
 * future work   
 Better print format   
